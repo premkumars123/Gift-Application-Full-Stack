@@ -2,35 +2,32 @@ package com.examly.springapp.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.examly.springapp.model.Gift;
 import com.examly.springapp.repository.GiftRepo;
 
 @Service
 public class GiftService {
-
     @Autowired
     private GiftRepo giftRepo;
 
-    // Create
+
     public Gift addGift(Gift giftData) {
         return giftRepo.save(giftData);
     }
 
-    // Read All
+
     public List<Gift> getAllGifts() {
         return giftRepo.findAll();
     }
 
-    // Read by ID
+
     public Optional<Gift> getGiftById(Integer id) {
         return giftRepo.findById(id);
     }
 
-    // Update
+
     public Gift updateGift(Integer id, Gift updatedGift) {
         Optional<Gift> optionalGift = giftRepo.findById(id);
         if (optionalGift.isPresent()) {
@@ -46,7 +43,7 @@ public class GiftService {
         }
     }
 
-    // Delete
+
     public boolean deleteGift(Integer id) {
         if (giftRepo.existsById(id)) {
             giftRepo.deleteById(id);

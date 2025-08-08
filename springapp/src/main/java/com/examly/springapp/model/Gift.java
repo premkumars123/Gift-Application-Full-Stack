@@ -7,14 +7,12 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Gift {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
     private String giftCategories;
-    private String experience; // Note: String type as expected by tests
+    private String experience; 
     private String specialization;
     private String phoneNumber;
 
@@ -31,7 +29,6 @@ public class Gift {
         this.phoneNumber = phoneNumber;
     }
 
-    // Getters and Setters for all fields
 
     public Integer getId() {
         return id;
