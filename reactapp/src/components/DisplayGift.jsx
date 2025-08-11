@@ -1,0 +1,43 @@
+import React, { useEffect, useState } from "react";
+import '../styles/DisplayGift.css';
+
+function DisplayGift() {
+    const [gifts, setGifts] = useState([]);
+
+    useEffect(() => {
+        fetch("/getAllGifts")
+            .then((res) => res.json())
+            .then((data) => setGifts(data))
+            .catch((err) => console.error(err));
+    }, []);
+
+    return (
+        <div>
+            <h2>Submitted Gift Applications</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Gift Categories</th>
+                        <th>Experience</th>
+                        <th>Specialization</th>
+                        <th>Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {gifts.map((gift, index) => (
+                        <tr key={index}>
+                            <td>{gift.name}</td>
+                            <td>{gift.giftCategories}</td>
+                            <td>{gift.experience}</td>
+                            <td>{gift.specialization}</td>
+                            <td>{gift.phoneNumber}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+}
+
+export default DisplayGift;
