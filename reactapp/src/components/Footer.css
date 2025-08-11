@@ -1,8 +1,16 @@
 .footer {
-
-text-align: center;
-padding: 15px;
-background-color: #eee;
-font-size: 14px;
-color: #555;
+  text-align: center;
+  padding: 18px;
+  background: linear-gradient(90deg, #7c4dff 0%, #00e5ff 100%);
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 1px;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -2px 12px #7c4dff33;
+  text-shadow: 0 2px 8px #00e5ff55;
+  animation: fadeInFooter 1.2s;
+}
+@keyframes fadeInFooter {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -1,19 +1,39 @@
 .home-container {
-
-text-align: center;
-padding: 40px;
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  border-radius: 18px;
+  margin: 40px auto;
+  max-width: 600px;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.17);
+  animation: fadeInHome 1.2s;
+}
+@keyframes fadeInHome {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .apply-link {
-    display: inline-block;
-    background-color: #7c4dff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 6px;
-    text-decoration: none;
-    margin-top: 20px;
+  display: inline-block;
+  background: linear-gradient(90deg, #7c4dff 0%, #00e5ff 100%);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 32px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  box-shadow: 0 2px 12px #7c4dff33;
+  letter-spacing: 1px;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  animation: popInBtn 1.2s 0.3s backwards;
 }
-
+@keyframes popInBtn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
 .apply-link:hover {
-    background-color: #5e35b1;
+  background: linear-gradient(90deg, #00e5ff 0%, #7c4dff 100%);
+  box-shadow: 0 6px 24px #7c4dff55;
+  transform: scale(1.06) rotate(-1deg);
 }
