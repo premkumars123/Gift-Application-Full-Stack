@@ -2,10 +2,11 @@ form {
 
 background: white;
 max-width: 500px;
-margin: 20px auto;
-padding: 20px;
-border-radius: 8px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+margin: 30px auto;
+padding: 25px;
+border-radius: 10px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+animation: fadeInUp 0.8s ease-in-out;
 }
 
 form div {
@@ -15,14 +16,21 @@ form div {
 label {
     display: block;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
 
 input {
     width: 100%;
     padding: 8px;
-    border-radius: 4px;
+    border-radius: 6px;
     border: 1px solid #ccc;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 p {
@@ -32,13 +40,28 @@ p {
 }
 
 button {
-    background-color: #007bff;
+    background: linear-gradient(90deg, #007bff, #0056b3);
     color: white;
     padding: 10px 15px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(90deg, #0056b3, #003f88);
+    transform: scale(1.05);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

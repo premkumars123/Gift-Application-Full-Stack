@@ -1,0 +1,29 @@
+.provider-management {
+
+padding: 30px;
+}
+
+.provider-management input {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+}
+
+.provider-management ul {
+    list-style: none;
+    padding: 0;
+}
+
+.provider-management li {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.provider-management li:hover {
+    transform: translateX(5px);
+}

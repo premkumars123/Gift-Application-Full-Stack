@@ -1,0 +1,60 @@
+.application-management {
+
+padding: 30px;
+}
+
+.application-management h2 {
+
+margin-bottom: 15px;
+}
+
+.application-management input {
+    padding: 8px;
+    width: 250px;
+    margin-bottom: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+}
+
+.application-management table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.application-management th,
+.application-management td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.application-management th {
+    background: #f3f4f6;
+}
+
+.application-management button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.application-management button:hover {
+    transform: translateY(-2px);
+}
+
+.application-management button:nth-child(1) {
+    background: #3b82f6;
+    color: white;
+}
+
+.application-management button:nth-child(2) {
+    background: #10b981;
+    color: white;
+}
+
+.application-management button:nth-child(3) {
+    background: #ef4444;
+    color: white;
+}
