@@ -23,12 +23,18 @@ animation: fadeIn 0.8s ease-in-out;
     margin-top: 20px;
     border-radius: 6px;
     transition: all 0.3s ease-in-out;
+    text-decoration: none;
 }
 
 .home-container a:hover {
     background: linear-gradient(90deg, #218838, #1e7e34);
     transform: translateY(-3px);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.home-container a:focus-visible {
+    outline: 3px solid rgba(40, 167, 69, 0.4);
+    outline-offset: 2px;
 }
 
 @keyframes fadeIn {

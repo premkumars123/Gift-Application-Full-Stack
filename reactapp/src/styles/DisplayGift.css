@@ -40,6 +40,11 @@ td {
     border-bottom: 1px solid #ddd;
 }
 
+/* Responsive table scroll */
+.table-wrapper {
+    overflow-x: auto;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

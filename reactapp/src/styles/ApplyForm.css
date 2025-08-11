@@ -33,10 +33,22 @@ input:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-p {
-    color: red;
+/* Validation errors inside the form */
+form p {
+    color: #d9534f;
     font-size: 0.9rem;
     margin-top: 5px;
+}
+
+/* Success message shown right after the heading */
+h2 + p {
+    color: #2e7d32;
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    padding: 10px 12px;
+    border-radius: 6px;
+    max-width: 500px;
+    margin: 10px auto 0 auto;
 }
 
 button {
@@ -47,11 +59,22 @@ button {
     border-radius: 6px;
     font-size: 1rem;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 button:hover {
     background: linear-gradient(90deg, #0056b3, #003f88);
     transform: scale(1.05);
+}
+
+button:focus-visible {
+    outline: 3px solid rgba(0, 123, 255, 0.5);
+    outline-offset: 2px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 @keyframes fadeInUp {
