@@ -13,7 +13,7 @@ margin-top: 20px;
 
 table {
     border-collapse: collapse;
-    width: 90%;
+   width: 90%;
     margin: 20px auto;
     background-color: white;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -46,19 +46,10 @@ tr:hover {
 td {
     border-bottom: 1px solid #ddd;
 }
-
-<<<<<<< HEAD
-tbody tr {
-    transition: transform 0.15s ease, background 0.2s ease;
-}
-
-tbody tr:hover {
-    transform: scale(1.005);
-=======
 /* Responsive table scroll */
 .table-wrapper {
     overflow-x: auto;
->>>>>>> 9ece66a4684ab5266d95669ce92b807612b8af12
+
 }
 
 @keyframes fadeIn {

@@ -1,4 +1,4 @@
-footer {
+/* footer {
 
 background: #343a40;
 color: white;
@@ -23,6 +23,62 @@ footer:hover {
 footer:focus-within {
     outline: 2px dashed rgba(255, 255, 255, 0.4);
     outline-offset: 4px;
+}
+
+footer:focus-within {
+    outline: 2px dashed rgba(255, 255, 255, 0.4);
+    outline-offset: 4px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+} */
+
+/* Make sure html and body take full height */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Container that wraps everything except the footer */
+body {
+    display: flex;
+    flex-direction: column;
+    -ms-flex-align: baseline;
+}
+
+/* Make content take available space so footer pushes to bottom */
+main {
+    flex: 1;
+}
+
+/* Footer styling */
+footer {
+    background: #343a40;
+    color: white;
+    text-align: center;
+    padding: 12px 0;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+footer:hover {
+    background: #212529;
+    transform: translateY(-1px);
 }
 
 footer:focus-within {
