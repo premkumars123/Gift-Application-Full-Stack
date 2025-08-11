@@ -25,6 +25,11 @@ footer:focus-within {
     outline-offset: 4px;
 }
 
+footer:focus-within {
+    outline: 2px dashed rgba(255, 255, 255, 0.4);
+    outline-offset: 4px;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

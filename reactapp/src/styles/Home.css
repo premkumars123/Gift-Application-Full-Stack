@@ -24,7 +24,10 @@ animation: fadeIn 0.8s ease-in-out;
     border-radius: 6px;
     transition: all 0.3s ease-in-out;
     text-decoration: none;
+<<<<<<< HEAD
     transform: translateY(0);
+=======
+>>>>>>> 9ece66a4684ab5266d95669ce92b807612b8af12
 }
 
 .home-container a:hover {
@@ -33,11 +36,14 @@ animation: fadeIn 0.8s ease-in-out;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+<<<<<<< HEAD
 .home-container a:active {
     transform: translateY(-1px) scale(0.99);
     filter: brightness(0.95);
 }
 
+=======
+>>>>>>> 9ece66a4684ab5266d95669ce92b807612b8af12
 .home-container a:focus-visible {
     outline: 3px solid rgba(40, 167, 69, 0.4);
     outline-offset: 2px;
