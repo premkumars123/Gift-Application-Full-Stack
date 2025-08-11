@@ -5,7 +5,12 @@ function DisplayGift() {
     const [gifts, setGifts] = useState([]);
 
     useEffect(() => {
-        fetch("/getAllGifts")
+        fetch("/getAllGifts", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
             .then((res) => res.json())
             .then((data) => setGifts(data))
             .catch((err) => console.error(err));

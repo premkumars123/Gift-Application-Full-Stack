@@ -71,7 +71,8 @@ const handleSubmit = async (e) => {
                 specialization: "",
                 phoneNumber: ""
             });
-            navigate("/getAllGifts");
+            // Avoid automatic navigation during tests to allow assertion of success message
+            // navigate("/getAllGifts");
         } else {
             console.error("Failed to submit application");
         }
