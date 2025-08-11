@@ -17,19 +17,25 @@ animation: fadeIn 0.8s ease-in-out;
 
 .home-container a {
     display: inline-block;
-    background: linear-gradient(90deg, #28a745, #218838);
+    background: linear-gradient(90deg, var(--color-success-start, #28a745), var(--color-success-end, #218838));
     color: white;
     padding: 12px 20px;
     margin-top: 20px;
     border-radius: 6px;
     transition: all 0.3s ease-in-out;
     text-decoration: none;
+    transform: translateY(0);
 }
 
 .home-container a:hover {
     background: linear-gradient(90deg, #218838, #1e7e34);
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.02);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.home-container a:active {
+    transform: translateY(-1px) scale(0.99);
+    filter: brightness(0.95);
 }
 
 .home-container a:focus-visible {

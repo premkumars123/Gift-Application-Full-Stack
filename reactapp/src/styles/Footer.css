@@ -5,7 +5,8 @@ color: white;
 text-align: center;
 padding: 12px 0;
 width: 100%;
-animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
 footer p {
@@ -16,7 +17,7 @@ footer p {
 
 footer:hover {
     background: #212529;
-    transition: background 0.3s;
+    transform: translateY(-1px);
 }
 
 footer:focus-within {

@@ -1,12 +1,14 @@
 nav {
-
-background: linear-gradient(90deg, #007bff, #0056b3);
-padding: 12px 25px;
-color: white;
-display: flex;
-align-items: center;
-justify-content: space-between;
-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, var(--color-primary-start, #007bff), var(--color-primary-end, #0056b3));
+    padding: 12px 25px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 nav h1 {
@@ -14,6 +16,7 @@ nav h1 {
     font-size: 1.6rem;
     letter-spacing: 1px;
     animation: fadeIn 1s ease-in-out;
+    transform-origin: left center;
 }
 
 nav ul {
@@ -31,8 +34,8 @@ nav li {
     color: white;
     font-weight: bold;
     position: relative;
-    padding: 5px 0;
-    transition: color 0.3s;
+    padding: 8px 6px;
+    transition: color 0.3s, transform 0.2s ease;
 }
 
 .nav-link::after {
@@ -47,11 +50,18 @@ nav li {
 }
 
 .nav-link:hover {
-    color: #ffd700;
+    color: var(--color-accent, #ffd700);
+    transform: translateY(-1px);
 }
 
 .nav-link:hover::after {
     width: 100%;
+}
+
+.nav-link:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+    border-radius: 6px;
 }
 
 @keyframes fadeIn {
