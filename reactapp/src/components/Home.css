@@ -1,0 +1,19 @@
+.home-container {
+
+text-align: center;
+padding: 40px;
+}
+
+.apply-link {
+    display: inline-block;
+    background-color: #7c4dff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.apply-link:hover {
+    background-color: #5e35b1;
+}

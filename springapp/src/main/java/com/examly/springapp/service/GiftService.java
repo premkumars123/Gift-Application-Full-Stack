@@ -39,7 +39,7 @@ public class GiftService {
             existingGift.setPhoneNumber(updatedGift.getPhoneNumber());
             return giftRepo.save(existingGift);
         } else {
-            return null; // Or throw an exception for not found
+            return null; 
         }
     }
 
