@@ -1,8 +1,7 @@
 h2 {
-
-text-align: center;
-margin-top: 20px;
-    animation: fadeIn 0.8s ease-in-out;
+  text-align: center;
+  margin: 24px 0 12px 0;
+  animation: fadeIn 0.6s ease-in-out;
 }
 
 /* Optional wrapper in case you add one later */
@@ -12,14 +11,14 @@ margin-top: 20px;
 }
 
 table {
-    border-collapse: collapse;
-   width: 90%;
-    margin: 20px auto;
-    background-color: white;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s ease;
+  border-collapse: collapse;
+  width: 95%;
+  margin: 20px auto;
+  background-color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
 }
 
 th,
@@ -29,9 +28,9 @@ td {
 }
 
 th {
-    background: linear-gradient(90deg, #007bff, #0056b3);
-    color: white;
-    font-size: 1rem;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  font-size: 1rem;
 }
 
 tr:nth-child(even) {
@@ -39,8 +38,8 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-    background-color: #e9f5ff;
-    transition: background 0.3s ease-in-out;
+  background-color: #f0f7ff;
+  transition: background 0.2s ease-in-out;
 }
 
 td {
@@ -48,8 +47,8 @@ td {
 }
 /* Responsive table scroll */
 .table-wrapper {
-    overflow-x: auto;
-
+  overflow-x: auto;
+  padding: 0 8px;
 }
 
 @keyframes fadeIn {

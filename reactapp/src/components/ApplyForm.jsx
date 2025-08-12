@@ -82,37 +82,37 @@ const handleSubmit = async (e) => {
 };
 
 return (
-    <div>
+    <div className="apply-container">
         <h2>Apply to Become a Gift Provider</h2>
-        {successMessage && <p>{successMessage}</p>}
-        <form onSubmit={handleSubmit}>
-            <div>
+        {successMessage && <p aria-live="polite">{successMessage}</p>}
+        <form className="apply-form" onSubmit={handleSubmit}>
+            <div className="form-row">
                 <label htmlFor="name">Name:</label>
-                <input id="name" name="name" value={formData.name} onChange={handleChange} />
+                <input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your full name" />
                 {errors.name && <p>{errors.name}</p>}
             </div>
 
-            <div>
+            <div className="form-row">
                 <label htmlFor="giftCategories">Gift Categories:</label>
-                <input id="giftCategories" name="giftCategories" value={formData.giftCategories} onChange={handleChange} />
+                <input id="giftCategories" name="giftCategories" value={formData.giftCategories} onChange={handleChange} placeholder="e.g., Handmade Crafts" />
                 {errors.giftCategories && <p>{errors.giftCategories}</p>}
             </div>
 
-            <div>
+            <div className="form-row">
                 <label htmlFor="experience">Experience (Years):</label>
-                <input type="number" id="experience" name="experience" value={formData.experience} onChange={handleChange} />
+                <input type="number" id="experience" name="experience" value={formData.experience} onChange={handleChange} placeholder="e.g., 5" />
                 {errors.experience && <p>{errors.experience}</p>}
             </div>
 
-            <div>
+            <div className="form-row">
                 <label htmlFor="specialization">Specialization:</label>
-                <input id="specialization" name="specialization" value={formData.specialization} onChange={handleChange} />
+                <input id="specialization" name="specialization" value={formData.specialization} onChange={handleChange} placeholder="e.g., Custom Crafting" />
                 {errors.specialization && <p>{errors.specialization}</p>}
             </div>
 
-            <div>
+            <div className="form-row">
                 <label htmlFor="phoneNumber">Phone Number:</label>
-                <input id="phoneNumber" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} />
+                <input id="phoneNumber" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="e.g., +911234567890" />
                 {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
             </div>
 
