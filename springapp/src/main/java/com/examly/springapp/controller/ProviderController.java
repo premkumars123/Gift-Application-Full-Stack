@@ -1,5 +1,6 @@
 package com.examly.springapp.controller;
 
+import com.examly.springapp.dto.ProviderRequest;
 import com.examly.springapp.model.Provider;
 import com.examly.springapp.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,13 @@ public class ProviderController {
     }
 
     @PostMapping
-    public Provider createProvider(@RequestBody Provider provider) {
-        return providerService.saveProvider(provider);
+    public Provider createProvider(@RequestBody ProviderRequest request) {
+        return providerService.saveProvider(request);
     }
 
     @PutMapping("/{id}")
-    public Provider updateProvider(@PathVariable Long id, @RequestBody Provider provider) {
-        return providerService.updateProvider(id, provider);
+    public Provider updateProvider(@PathVariable Long id, @RequestBody ProviderRequest request) {
+        return providerService.updateProvider(id, request);
     }
 
     @DeleteMapping("/{id}")
