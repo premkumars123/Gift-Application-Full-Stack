@@ -9,9 +9,11 @@ function Home() {
             <p>
                 Join our community of skilled gift providers and bring joy to every occasion!
             </p>
-            <Link to="/apply">
-            <button className="button">Become a Gift Provider</button>
+            <div className="center-btn">
+            <Link to="/apply" className="btn-link">
+                Become a Gift Provider
             </Link>
+            </div>
         </div>
     );
 }

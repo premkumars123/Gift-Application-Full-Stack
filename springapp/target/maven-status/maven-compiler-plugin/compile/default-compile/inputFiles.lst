@@ -1,4 +1,5 @@
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/model/Provider.java
+/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/dto/ProviderRequest.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/service/GiftService.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/ProviderController.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/ApplicationController.java
