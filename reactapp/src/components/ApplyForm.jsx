@@ -73,6 +73,9 @@ const handleSubmit = async (e) => {
             });
             // Avoid automatic navigation during tests to allow assertion of success message
             // navigate("/getAllGifts");
+            setTimeout(() => {
+                    navigate("/getAllGifts"); // redirect after 2 seconds
+                        }, 2000);
         } else {
             console.error("Failed to submit application");
         }
