@@ -1,19 +1,36 @@
+/* Global reset and theme */
+:root {
+  --color-primary-start: #007bff;
+  --color-primary-end: #0056b3;
+  --color-bg: #f5f7fb;
+  --color-surface: #ffffff;
+  --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.07);
+}
+
+* { box-sizing: border-box; }
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(180deg, #f9fbff, #f5f7fb);
+  color: #0f172a;
 }
 
-h1,
-h2 {
-    color: #2c3e50;
+a { text-decoration: none; }
+button { cursor: pointer; }
+
+/* App layout */
+.app-main {
+  max-width: 1100px;
+  padding: 24px 16px 40px 16px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-a {
-    text-decoration: none;
-}
-
-button {
-    cursor: pointer;
+/* Card utility */
+.card {
+  background: var(--color-surface);
+  border-radius: 14px;
+  box-shadow: var(--shadow-1);
+  border: 1px solid rgba(0,0,0,0.06);
 }

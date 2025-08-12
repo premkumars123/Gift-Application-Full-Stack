@@ -85,7 +85,7 @@ const handleSubmit = async (e) => {
 };
 
 return (
-    <div className="apply-container">
+    <div className="apply-container card">
         <h2>Apply to Become a Gift Provider</h2>
         {successMessage && <p aria-live="polite">{successMessage}</p>}
         <form className="apply-form" onSubmit={handleSubmit}>
