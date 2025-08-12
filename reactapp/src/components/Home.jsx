@@ -4,14 +4,12 @@ import '../styles/Home.css';
 
 function Home() {
     return (
-        <div>
+        <div className="home-container">
             <h2>Welcome to the Gift Application</h2>
             <p>
                 Join our community of skilled gift providers and bring joy to every occasion!
             </p>
-            <Link to="/apply">
-            <button className="button">Become a Gift Provider</button>
-            </Link>
+            <Link className="apply-link" to="/apply">Become a Gift Provider</Link>
         </div>
     );
 }
