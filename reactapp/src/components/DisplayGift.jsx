@@ -17,9 +17,9 @@ function DisplayGift() {
     }, []);
 
     return (
-        <div>
+        <div className="table-wrapper">
             <h2>Submitted Gift Applications</h2>
-            <table border="1">
+            <table>
                 <thead>
                     <tr>
                         <th>Name</th>
