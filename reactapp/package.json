@@ -7,9 +7,10 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.3",
+    "bootstrap": "^5.3.7",
+    "canvas": "^2.11.2",
     "history": "^5.3.0",
     "jest": "^27.5.1",
-    "canvas": "^2.11.2",
     "msw": "^1.2.4",
     "node-fetch": "^3.3.2",
     "react": "^18.2.0",
@@ -20,8 +21,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "PORT=8081 && react-scripts start",
-    
+    "start": "PORT=8081 && react-scripts start --host 0.0.0.0 --disable-host-check true",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

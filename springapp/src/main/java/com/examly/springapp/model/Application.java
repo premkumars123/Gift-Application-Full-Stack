@@ -1,6 +1,7 @@
 package com.examly.springapp.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "applications")
@@ -11,27 +12,31 @@ public class Application {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "applicant_id", nullable = false)
+    private User applicant;
 
-    @Column(nullable = false, length = 255)
-    private String name;
+    @Column(nullable = false)
+    private String businessName;
 
-    @Column(length = 500)
-    private String description;
+    private String contactPerson;
+
+    private String portfolioLink;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status;
+
+    @Lob
+    private String comments;
+
+    private LocalDateTime createdAt;
+
+    public enum Status {
+        PENDING, UNDER_REVIEW, APPROVED, REJECTED
+    }
 
     public Application() {
     }
-
-
-    public Application(Long id, User user, String name, String description) {
-        this.id = id;
-        this.user = user;
-        this.name = name;
-        this.description = description;
-    }
-
-
 
     public Long getId() {
         return id;
@@ -41,27 +46,59 @@ public class Application {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public User getApplicant() {
+        return applicant;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setApplicant(User applicant) {
+        this.applicant = applicant;
     }
 
-    public String getName() {
-        return name;
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContactPerson() {
+        return contactPerson;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+
+    public String getPortfolioLink() {
+        return portfolioLink;
+    }
+
+    public void setPortfolioLink(String portfolioLink) {
+        this.portfolioLink = portfolioLink;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

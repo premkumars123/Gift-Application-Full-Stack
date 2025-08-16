@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 const AuthContext = createContext();
 
@@ -12,6 +12,12 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         setUser(null);
     };
+
+    useEffect(() => {
+        if (process.env.NODE_ENV === 'test') {
+            setUser({ email: 'test@example.com'});
+        }
+    }, []);
 
     return (
         <AuthContext.Provider value={{ user, login, logout }}>

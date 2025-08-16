@@ -14,28 +14,16 @@ public class Provider {
     @JoinColumn(name = "user_id", unique = true)
     private User user;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String businessName;
 
-    @Column(length = 255)
     private String contactPerson;
 
-    @Column(length = 255)
     private String email;
 
-    @Column(length = 20)
     private String phoneNumber;
+
     public Provider() {
-    }
-
-
-    public Provider(Long id, User user, String businessName, String contactPerson, String email, String phoneNumber) {
-        this.id = id;
-        this.user = user;
-        this.businessName = businessName;
-        this.contactPerson = contactPerson;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
     }
 
     public Long getId() {

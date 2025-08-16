@@ -1,43 +1,33 @@
 package com.examly.springapp.controller;
 
-import com.examly.springapp.dto.ProviderRequest;
 import com.examly.springapp.model.Provider;
+import com.examly.springapp.model.User;
 import com.examly.springapp.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/providers")
+@RequestMapping("/api/providers")
 public class ProviderController {
 
     @Autowired
     private ProviderService providerService;
 
-    @GetMapping
-    public List<Provider> getAllProviders() {
-        return providerService.getAllProviders();
+    @PostMapping("/")
+    public ResponseEntity<Provider> createProvider(@RequestBody Provider provider) {
+        Provider savedProvider = providerService.save(provider);
+        return ResponseEntity.ok(savedProvider);
     }
 
-    @GetMapping("/{id}")
-    public Optional<Provider> getProviderById(@PathVariable Long id) {
-        return providerService.getProviderById(id);
-    }
-
-    @PostMapping
-    public Provider createProvider(@RequestBody ProviderRequest request) {
-        return providerService.saveProvider(request);
-    }
-
-    @PutMapping("/{id}")
-    public Provider updateProvider(@PathVariable Long id, @RequestBody ProviderRequest request) {
-        return providerService.updateProvider(id, request);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteProvider(@PathVariable Long id) {
-        providerService.deleteProvider(id);
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Provider> getProviderByUser(@PathVariable Long userId) {
+        User user = new User();
+        user.setId(userId);
+        Optional<Provider> providerOpt = providerService.getByUser(user);
+        return providerOpt.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import '../styles/ApplyForm.css';
 
 function ApplyForm() { 
@@ -11,6 +12,7 @@ name: "",
                 phoneNumber: ""
 });
 
+const { user } = useAuth();
 const [errors, setErrors] = useState({});
 const [successMessage, setSuccessMessage] = useState("");
 const navigate = useNavigate();
@@ -53,7 +55,16 @@ const handleChange = (e) => {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
+
+    
     if (!validate()) return;
+
+    const newApplication = {
+        ...formData,
+        email: user.email,
+        status: 'Pending',
+        appliedDate: new Date().toISOString().split('T')[0]
+    };
 
     try {
         const response = await fetch("/addGift", {
