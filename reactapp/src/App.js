@@ -7,6 +7,13 @@ import DisplayGift from "./components/DisplayGift";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./context/AuthContext";
 import Login from "./components/Login";
+import Register from "./components/Register";
+import { useAuth } from "./context/AuthContext";
+
+function PrivateRoute({ element }) {
+    const { user } = useAuth();
+    return user ? element : <Login />;
+}
 
 function App() {
     return (
@@ -16,10 +23,13 @@ function App() {
                 <main className="app-main">
                     <Routes>
                         {/* Public Routes */}
-                        <Route path="/" element={<Home />} />
-                        <Route path="/apply" element={<ApplyForm />} />
-                        <Route path="/getAllGifts" element={<DisplayGift />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+
+                        {/* Protected Routes */}
+                        <Route path="/" element={<PrivateRoute element={<Home />} />} />
+                        <Route path="/apply" element={<PrivateRoute element={<ApplyForm />} />} />
+                        <Route path="/getAllGifts" element={<PrivateRoute element={<DisplayGift />} />} />
                         {/* Placeholder routes removed to prevent undefined component references */}
 
                         {/* Admin & Reviewer Routes */}

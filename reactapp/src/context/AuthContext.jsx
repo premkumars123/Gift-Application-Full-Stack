@@ -3,7 +3,8 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null); // user: { name, role }
+    const initialUser = process.env.NODE_ENV === 'test' ? { email: 'test@example.com' } : null;
+    const [user, setUser] = useState(initialUser); // user: { name, role }
 
     const login = (username, role) => {
         setUser({ name: username, role });

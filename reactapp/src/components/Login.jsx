@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Login.css";
 
@@ -62,6 +62,9 @@ function Login() {
                 <p>admin@example.com / Admin@123</p>
                 <p>provider@example.com / Provider@123</p>
                 <p>reviewer@example.com / Reviewer@123</p>
+                <p style={{marginTop:8}}>
+                    New user? <Link to="/register">Create an account</Link>
+                </p>
             </div>
         </div>
     );
