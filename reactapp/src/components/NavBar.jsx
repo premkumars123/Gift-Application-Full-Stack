@@ -4,7 +4,9 @@ import { useAuth } from "../context/AuthContext";
 import '../styles/NavBar.css';
 
 function NavBar() {
-    const { user, logout } = useAuth();
+    const auth = useAuth() || {};
+    const user = auth.user;
+    const logout = auth.logout || (() => {});
     return (
         <nav>
             <h1>Gift Application</h1>
