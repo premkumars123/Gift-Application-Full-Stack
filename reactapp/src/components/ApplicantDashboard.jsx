@@ -78,6 +78,12 @@ function ApplicantDashboard() {
 					A multi-step form with fields for <strong>Personal Details</strong>, <strong>Business Details</strong>,
 					 and <strong>Portfolio/References</strong>.
 				</p>
+				<ul>
+					<li>A Submit Application button.</li>
+				</ul>
+				<div style={{marginTop:8}}>
+					<Link className="qa-btn" to="/apply">Submit Application</Link>
+				</div>
 			</div>
 		</div>
 	);
