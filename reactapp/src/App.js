@@ -6,6 +6,7 @@ import ApplyForm from "./components/ApplyForm";
 import DisplayGift from "./components/DisplayGift";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./context/AuthContext";
+import Login from "./components/Login";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/apply" element={<ApplyForm />} />
                         <Route path="/getAllGifts" element={<DisplayGift />} />
+                        <Route path="/login" element={<Login />} />
                         {/* Placeholder routes removed to prevent undefined component references */}
 
                         {/* Admin & Reviewer Routes */}
