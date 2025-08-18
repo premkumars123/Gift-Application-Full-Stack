@@ -5,14 +5,17 @@ function DisplayGift() {
     const [gifts, setGifts] = useState([]);
 
     useEffect(() => {
-        fetch("/getAllGifts", {
+        fetch("http://localhost:8080/getAllGifts", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
         })
             .then((res) => res.json())
-            .then((data) => setGifts(data))
+            .then((data) => {
+                console.log("Fetched gifts:", data);
+                setGifts(data);
+            })
             .catch((err) => console.error(err));
     }, []);
 

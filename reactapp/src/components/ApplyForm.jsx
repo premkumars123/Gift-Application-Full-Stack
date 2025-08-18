@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import '../styles/ApplyForm.css';
 
 const ApplyForm = () => {
     const [formData, setFormData] = useState({
@@ -35,17 +37,17 @@ const ApplyForm = () => {
         }
 
         try {
-            const res = await fetch('/api/applications/submit', {
+            const res = await fetch('http://localhost:8080/addGift', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     applicantId: formData.applicantId,
-                    businessName: formData.businessName,
-                    contactPerson: formData.contactPerson,
-                    portfolioLink: formData.portfolioLink,
-                    comments: formData.comments
+                    name: formData.businessName,
+                    giftCategories: formData.contactPerson,
+                    experience: formData.portfolioLink,
+                    specialization: formData.comments
                 })
             });
 
@@ -69,10 +71,10 @@ const ApplyForm = () => {
     };
 
     return (
-        <div>
+        <div className="page-container">
+        <div className="apply-form-container">
             <h2>Apply Form</h2>
             <form onSubmit={handleSubmit}>
-                <div>
                     <label htmlFor="businessName">Name:</label>
                     <input
                         id="businessName"
@@ -81,9 +83,7 @@ const ApplyForm = () => {
                         onChange={(e) => handleChange('businessName', e.target.value)}
                     />
                     {errors.businessName && <p>{errors.businessName}</p>}
-                </div>
 
-                <div>
                     <label htmlFor="contactPerson">Gift Categories:</label>
                     <input
                         id="contactPerson"
@@ -92,9 +92,7 @@ const ApplyForm = () => {
                         onChange={(e) => handleChange('contactPerson', e.target.value)}
                     />
                     {errors.contactPerson && <p>{errors.contactPerson}</p>}
-                </div>
 
-                <div>
                     <label htmlFor="portfolioLink">Experience (Years):</label>
                     <input
                         id="portfolioLink"
@@ -103,9 +101,7 @@ const ApplyForm = () => {
                         onChange={(e) => handleChange('portfolioLink', e.target.value)}
                     />
                     {errors.portfolioLink && <p>{errors.portfolioLink}</p>}
-                </div>
 
-                <div>
                     <label htmlFor="comments">Specialization:</label>
                     <input
                         id="comments"
@@ -114,9 +110,8 @@ const ApplyForm = () => {
                         onChange={(e) => handleChange('comments', e.target.value)}
                     />
                     {errors.comments && <p>{errors.comments}</p>}
-                </div>
 
-                <div>
+
                     <label htmlFor="phone">Phone Number:</label>
                     <input
                         id="phone"
@@ -125,13 +120,13 @@ const ApplyForm = () => {
                         onChange={(e) => handleChange('phone', e.target.value)}
                     />
                     {errors.phone && <p>{errors.phone}</p>}
-                </div>
                 
                 <button type="submit">Submit Application</button>
             </form>
 
             {successMessage && <div>{successMessage}</div>}
             {errors.general && <div style={{color:'red'}}>{errors.general}</div>}
+        </div>
         </div>
     );
 };

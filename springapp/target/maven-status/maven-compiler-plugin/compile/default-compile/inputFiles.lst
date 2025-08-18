@@ -1,15 +1,11 @@
-/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/model/Provider.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/dto/ProviderRequest.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/service/GiftService.java
-/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/ProviderController.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/ApplicationController.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/SpringappApplication.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/repository/UserRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/service/ApplicationService.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/exception/InvalidPhoneNumberException.java
-/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/service/ProviderService.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/GiftController.java
-/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/repository/ProviderRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/repository/GiftRepo.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/dto/ApplicationRequestDTO.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/configuration/CorsConfiguration.java
