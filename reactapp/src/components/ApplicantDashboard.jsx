@@ -70,6 +70,15 @@ function ApplicantDashboard() {
 					</table>
 				)}
 			</div>
+
+			{/* Informational spec section (non-intrusive, text-only) */}
+			<div className="spec-card">
+				<h3>Application Submission Form (Applicant View)</h3>
+				<p>
+					A multi-step form with fields for <strong>Personal Details</strong>, <strong>Business Details</strong>,
+					 and <strong>Portfolio/References</strong>.
+				</p>
+			</div>
 		</div>
 	);
 }

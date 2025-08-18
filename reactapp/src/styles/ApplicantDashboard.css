@@ -33,4 +33,7 @@
 
 .error-text { color: #d92d20; }
 
+.spec-card { margin-top: 18px; padding: 14px 16px; background: #f6fafe; border: 1px solid #dbeafe; border-radius: 8px; }
+.spec-card h3 { margin: 0 0 6px; color: #0b5ed7; }
+
 
