@@ -28,7 +28,14 @@ const ApplyForm = () => {
         if (!formData.contactPerson) newErrors.contactPerson = 'Gift categories are required';
         if (!formData.portfolioLink) newErrors.portfolioLink = 'Experience is required';
         if (!formData.comments) newErrors.comments = 'Specialization is required';
-        if (!formData.phone) newErrors.phone = 'Phone Number is required';
+        if (!formData.phone) {
+            newErrors.phone = 'Phone Number is required';
+        } else {
+            const phoneOk = /^\+91\d{10}$/.test(formData.phone);
+            if (!phoneOk) {
+                newErrors.phone = 'Phone number must start with +91 and have exactly 10 digits after it.';
+            }
+        }
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
@@ -36,7 +43,7 @@ const ApplyForm = () => {
         }
 
         try {
-            const res = await fetch('http://localhost:8080/addGift', {
+            const res = await fetch('/addGift', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -63,7 +70,12 @@ const ApplyForm = () => {
                 });
                 setErrors({});
             } else {
-                setErrors({ general: 'Something went wrong. Please try again.' });
+                let message = 'Something went wrong. Please try again.';
+                try {
+                    const text = await res.text();
+                    if (text) message = text;
+                } catch (_) { /* ignore */ }
+                setErrors({ general: message });
             }
         } catch (error) {
             setErrors({ general: 'Error submitting the form. Try again later.' });

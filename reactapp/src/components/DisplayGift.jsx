@@ -5,7 +5,7 @@ function DisplayGift() {
     const [gifts, setGifts] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/getAllGifts", {
+        fetch("/getAllGifts", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
