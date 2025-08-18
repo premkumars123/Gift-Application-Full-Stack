@@ -15,19 +15,19 @@ function App() {
         <AuthProvider>
             <Router>
                 <NavBar />
-                <Routes>
-                    {/* Public Routes */}
-                    <Route path="/login" element={<LoginRegister />} /> 
-                    <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
-                    <Route path="/apply" element={<PrivateRoute><ApplyForm /></PrivateRoute>} />
-                    <Route path="/getAllGifts" element={<DisplayGift />} />
-                    <Route path="/applicant-dashboard" element={<PrivateRoute><ApplicantDashboard/></PrivateRoute>} />
-                    {/* Placeholder routes removed to prevent undefined component references */}
+                <main className="app-main">
+                    <Routes>
+                        {/* Public Routes */}
+                        <Route path="/" element={<Home />} />
+                        <Route path="/apply" element={<ApplyForm />} />
+                        <Route path="/getAllGifts" element={<DisplayGift />} />
+                        {/* Placeholder routes removed to prevent undefined component references */}
 
-                    {/* Admin & Reviewer Routes */}
-                    {/* <Route path="/reviewer-dashboard" element={<ReviewerAdminDashboard />} /> */}
-                    {/* <Route path="/provider-dashboard" element={<ProviderDashboard />} /> */}
-                </Routes>
+                        {/* Admin & Reviewer Routes */}
+                        {/* <Route path="/reviewer-dashboard" element={<ReviewerAdminDashboard />} /> */}
+                        {/* <Route path="/provider-dashboard" element={<ProviderDashboard />} /> */}
+                    </Routes>
+                </main>
                 <Footer />
             </Router>
         </AuthProvider>

@@ -4,7 +4,7 @@ import '../styles/Home.css';
 
 function Home() {
     return (
-        <div className="home-container">
+        <div className="home-container card">
             <h2>Welcome to the Gift Application</h2>
             <p>
                 Join our community of skilled gift providers and bring joy to every occasion!

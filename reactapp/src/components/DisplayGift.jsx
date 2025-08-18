@@ -20,7 +20,7 @@ function DisplayGift() {
     }, []);
 
     return (
-        <div className="table-wrapper">
+        <div className="table-wrapper card" style={{padding: '12px 0'}}>
             <h2>Submitted Gift Applications</h2>
             <table>
                 <thead>
