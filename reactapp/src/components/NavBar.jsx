@@ -8,16 +8,10 @@ function NavBar() {
             <h1>Gift Application</h1>
             <ul>
                 <li>
-                    <Link className="nav-link" to="/login">Login</Link>
-                </li>
-                <li>
                     <Link className="nav-link" to="/">Home</Link>
                 </li>
                 <li>
                     <Link className="nav-link" to="/getAllGifts">Gift Details</Link>
-                </li>
-                <li>
-                    <Link className="nav-link" to="/applicant-dashboard">Dashboard</Link>
                 </li>
             </ul>
         </nav>

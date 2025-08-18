@@ -1,8 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ApplicantDashboard from "./components/ApplicantDashboard/ApplicantDashboard";
-import PrivateRoute from "./components/PrivateRoute";
-import LoginRegister from "./components/LoginRegister/LoginRegister";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import ApplyForm from "./components/ApplyForm";

@@ -1,9 +1,11 @@
+com/examly/springapp/configuration/WebConfig.class
 com/examly/springapp/model/Gift.class
 com/examly/springapp/repository/GiftRepo.class
 com/examly/springapp/SpringappApplication.class
-com/examly/springapp/dto/ProviderRequest.class
 com/examly/springapp/configuration/CorsConfiguration$1.class
+com/examly/springapp/dto/ApplicationRequestDTO.class
 com/examly/springapp/controller/GiftController.class
 com/examly/springapp/configuration/CorsConfiguration.class
 com/examly/springapp/exception/InvalidPhoneNumberException.class
 com/examly/springapp/service/GiftService.class
+com/examly/springapp/dto/ProviderRequest.class
