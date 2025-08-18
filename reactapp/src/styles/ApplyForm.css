@@ -10,87 +10,91 @@ html {
   /* allow navbar, main, footer layout */
 }
 
-/* Main container for full-page layout */
-.page-container {
-  min-height: calc(100vh - 100px);
-  flex: 1;
-  /* take full available height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-  background: #f4f7fb;
-}
+/* BEAUTIFIED UI FOR Apply PAGE (works with current JSX) */
 
-/* Form box styling */
-.apply-form-container {
-  width: 500px;
-  padding: 30px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.6s ease-in-out;
-}
-
-/* Heading */
-.apply-form-container h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #007bff;
-  font-size: 24px;
-}
-
-/* Grid layout for labels & inputs */
-.apply-form-container form {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 15px 20px;
-  align-items: center;
-}
-
-/* Labels */
-.apply-form-container label {
-  font-weight: bold;
-  font-size: 14px;
-  color: #333;
-  text-align: left;
-  white-space: nowrap;
-}
-
-/* Inputs */
-.apply-form-container input {
+/* Container card on the page */
+.apply-container {
+  max-width: 620px;
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  margin: 40px auto;
+  padding: 28px 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.apply-container h2 {
+  margin: 0 0 18px 0;
+  text-align: center;
+  color: #0b5ed7;
+  font-size: 22px;
+  letter-spacing: 0.3px;
+}
+
+/* Form layout */
+.apply-form {
+  display: grid;
+  gap: 14px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+.apply-form label {
+  font-weight: 600;
+  color: #344054;
   font-size: 14px;
-  transition: all 0.3s ease;
 }
 
-.apply-form-container input:focus {
-  border-color: #007bff;
+.apply-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #fafbff;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.apply-form input:focus {
   outline: none;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
-  transform: scale(1.02);
+  border-color: #84c5ff;
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.12);
+  background: #fff;
 }
 
-/* Button */
-.apply-form-container button {
-  grid-column: span 2;
-  padding: 12px;
-  background: #007bff;
-  color: white;
-  font-size: 15px;
-  font-weight: bold;
+.apply-form p {
+  grid-column: 2 / -1;
+  margin: 4px 0 0;
+  color: #d92d20;
+  font-size: 12px;
+}
+
+.apply-form button {
+  margin-top: 6px;
+  padding: 12px 16px;
+  background: linear-gradient(90deg, #0d6efd 0%, #0b5ed7 100%);
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.1s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
-.apply-form-container button:hover {
-  background: #0056b3;
-  transform: translateY(-2px);
+.apply-form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(13, 110, 253, 0.25);
+}
+
+.apply-form button:active {
+  transform: translateY(0);
 }
 
 /* Fade in effect */
