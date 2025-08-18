@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import '../styles/ApplyForm.css';
 
 const ApplyForm = () => {
@@ -47,7 +46,8 @@ const ApplyForm = () => {
                     name: formData.businessName,
                     giftCategories: formData.contactPerson,
                     experience: formData.portfolioLink,
-                    specialization: formData.comments
+                    specialization: formData.comments,
+                    phoneNumber: formData.phone
                 })
             });
 
@@ -71,10 +71,12 @@ const ApplyForm = () => {
     };
 
     return (
-        <div className="page-container">
-        <div className="apply-form-container">
-            <h2>Apply Form</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="apply-container card">
+            <h2>Apply to Become a Gift Provider</h2>
+            {successMessage && <div>Application submitted successfully!</div>}
+            {errors.general && <div style={{color:'red'}}>{errors.general}</div>}
+            <form className="apply-form" onSubmit={handleSubmit}>
+                <div className="form-row">
                     <label htmlFor="businessName">Name:</label>
                     <input
                         id="businessName"
@@ -83,7 +85,9 @@ const ApplyForm = () => {
                         onChange={(e) => handleChange('businessName', e.target.value)}
                     />
                     {errors.businessName && <p>{errors.businessName}</p>}
+                </div>
 
+                <div className="form-row">
                     <label htmlFor="contactPerson">Gift Categories:</label>
                     <input
                         id="contactPerson"
@@ -92,7 +96,9 @@ const ApplyForm = () => {
                         onChange={(e) => handleChange('contactPerson', e.target.value)}
                     />
                     {errors.contactPerson && <p>{errors.contactPerson}</p>}
+                </div>
 
+                <div className="form-row">
                     <label htmlFor="portfolioLink">Experience (Years):</label>
                     <input
                         id="portfolioLink"
@@ -101,7 +107,9 @@ const ApplyForm = () => {
                         onChange={(e) => handleChange('portfolioLink', e.target.value)}
                     />
                     {errors.portfolioLink && <p>{errors.portfolioLink}</p>}
+                </div>
 
+                <div className="form-row">
                     <label htmlFor="comments">Specialization:</label>
                     <input
                         id="comments"
@@ -110,8 +118,9 @@ const ApplyForm = () => {
                         onChange={(e) => handleChange('comments', e.target.value)}
                     />
                     {errors.comments && <p>{errors.comments}</p>}
+                </div>
 
-
+                <div className="form-row">
                     <label htmlFor="phone">Phone Number:</label>
                     <input
                         id="phone"
@@ -120,56 +129,12 @@ const ApplyForm = () => {
                         onChange={(e) => handleChange('phone', e.target.value)}
                     />
                     {errors.phone && <p>{errors.phone}</p>}
-                
+                </div>
+
                 <button type="submit">Submit Application</button>
             </form>
-
-            {successMessage && <div>{successMessage}</div>}
-            {errors.general && <div style={{color:'red'}}>{errors.general}</div>}
-        </div>
         </div>
     );
-
-
-return (
-    <div className="apply-container card">
-        <h2>Apply to Become a Gift Provider</h2>
-        {successMessage && <p aria-live="polite">{successMessage}</p>}
-        <form className="apply-form" onSubmit={handleSubmit}>
-            <div className="form-row">
-                <label htmlFor="name">Name:</label>
-                <input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your full name" />
-                {errors.name && <p>{errors.name}</p>}
-            </div>
-
-            <div className="form-row">
-                <label htmlFor="giftCategories">Gift Categories:</label>
-                <input id="giftCategories" name="giftCategories" value={formData.giftCategories} onChange={handleChange} placeholder="e.g., Handmade Crafts" />
-                {errors.giftCategories && <p>{errors.giftCategories}</p>}
-            </div>
-
-            <div className="form-row">
-                <label htmlFor="experience">Experience (Years):</label>
-                <input type="number" id="experience" name="experience" value={formData.experience} onChange={handleChange} placeholder="e.g., 5" />
-                {errors.experience && <p>{errors.experience}</p>}
-            </div>
-
-            <div className="form-row">
-                <label htmlFor="specialization">Specialization:</label>
-                <input id="specialization" name="specialization" value={formData.specialization} onChange={handleChange} placeholder="e.g., Custom Crafting" />
-                {errors.specialization && <p>{errors.specialization}</p>}
-            </div>
-
-            <div className="form-row">
-                <label htmlFor="phoneNumber">Phone Number:</label>
-                <input id="phoneNumber" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="e.g., +911234567890" />
-                {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
-            </div>
-
-            <button type="submit">Submit Application</button>
-        </form>
-    </div>
-);
-}
+};
 
 export default ApplyForm;
