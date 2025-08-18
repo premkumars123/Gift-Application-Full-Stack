@@ -10,6 +10,9 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import { useAuth } from "./context/AuthContext";
 import ApplicantDashboard from "./components/ApplicantDashboard";
+import ReviewerAdminDashboard from "./components/ReviewerAdminDashboard";
+import ApplicationManagement from "./components/ApplicationManagement";
+import ProviderManagement from "./components/ProviderManagement";
 
 function PrivateRoute({ element }) {
     const { user } = useAuth();
@@ -31,6 +34,9 @@ function App() {
                         <Route path="/" element={<PrivateRoute element={<ApplicantDashboard />} />} />
                         <Route path="/apply" element={<PrivateRoute element={<ApplyForm />} />} />
                         <Route path="/getAllGifts" element={<PrivateRoute element={<DisplayGift />} />} />
+                        <Route path="/reviewer" element={<PrivateRoute element={<ReviewerAdminDashboard />} />} />
+                        <Route path="/manage/applications" element={<PrivateRoute element={<ApplicationManagement />} />} />
+                        <Route path="/manage/providers" element={<PrivateRoute element={<ProviderManagement />} />} />
                         {/* Placeholder routes removed to prevent undefined component references */}
 
                         {/* Admin & Reviewer Routes */}

@@ -1,0 +1,18 @@
+.ra-layout { display: grid; grid-template-columns: 240px 1fr; gap: 16px; margin: 24px auto; max-width: 1100px; }
+.ra-sidebar { background:#fff; border-radius:12px; box-shadow:0 10px 30px rgba(16,24,40,.08); padding:16px; }
+.ra-sidebar h3 { margin:0 0 10px; color:#0b5ed7; }
+.ra-sidebar ul { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+.ra-sidebar a { text-decoration:none; color:#0d6efd; font-weight:600; }
+.ra-sidebar .disabled { opacity:.6; }
+.ra-sidebar .disabled span { color:#667085; }
+
+.ra-content { background:#fff; border-radius:12px; box-shadow:0 10px 30px rgba(16,24,40,.08); padding:18px; }
+.ra-content h2 { margin:0 0 10px; color:#0b5ed7; }
+.ra-cards { display:flex; flex-wrap:wrap; gap:12px; margin:12px 0; }
+.ra-card { flex:1 1 220px; background:#f8fafc; border:1px solid #e5e7eb; border-radius:10px; padding:14px; }
+.ra-card .label { color:#475467; font-size:13px; }
+.ra-card .value { font-size:22px; font-weight:800; color:#0b5ed7; }
+.ra-help { color:#475467; font-size:12px; margin-top:8px; }
+.error-text { color:#d92d20; }
+
+

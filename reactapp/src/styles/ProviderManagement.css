@@ -1,0 +1,12 @@
+.prov-container { max-width:1100px; margin:24px auto; padding:18px; background:#fff; border-radius:12px; box-shadow:0 10px 30px rgba(16,24,40,.08); }
+.prov-toolbar { display:flex; gap:12px; align-items:center; margin:10px 0 14px; }
+.prov-search { flex:1; padding:10px 12px; border:1px solid #d0d5dd; border-radius:8px; }
+.prov-count { color:#475467; font-weight:600; }
+.prov-groups { display:grid; gap:14px; }
+.prov-group { border:1px solid #e5e7eb; border-radius:10px; padding:12px; background:#f8fafc; }
+.prov-group h3 { margin:0 0 8px; color:#0b5ed7; }
+.prov-group table { width:100%; border-collapse:collapse; }
+.prov-group th, .prov-group td { border:1px solid #e5e7eb; padding:10px 12px; text-align:left; }
+.prov-group th { background:#eef2ff; }
+
+
