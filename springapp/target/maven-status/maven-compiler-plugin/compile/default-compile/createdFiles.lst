@@ -1,4 +1,3 @@
-com/examly/springapp/configuration/WebConfig.class
 com/examly/springapp/model/Gift.class
 com/examly/springapp/repository/GiftRepo.class
 com/examly/springapp/SpringappApplication.class
