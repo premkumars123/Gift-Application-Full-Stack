@@ -1,3 +1,4 @@
+/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/configuration/OpenApiConfig.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/exception/InvalidPhoneNumberException.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/dto/ProviderRequest.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/GiftController.java
@@ -5,6 +6,5 @@
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/repository/GiftRepo.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/dto/ApplicationRequestDTO.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/configuration/CorsConfiguration.java
-/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/configuration/WebConfig.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/SpringappApplication.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/model/Gift.java
