@@ -1,0 +1,36 @@
+.dashboard-container {
+	max-width: 980px;
+	margin: 32px auto;
+	padding: 24px;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+}
+
+.dashboard-container h2 {
+	margin: 0 0 4px 0;
+	color: #0b5ed7;
+}
+
+.welcome { color: #475467; margin: 0 0 16px 0; }
+
+.quick-actions { display: flex; gap: 12px; margin: 8px 0 18px; }
+.qa-btn {
+	background: #0d6efd;
+	color: #fff;
+	padding: 10px 14px;
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: 700;
+}
+.qa-btn.outline { background: transparent; color: #0d6efd; border: 1px solid #0d6efd; }
+
+.recent-card h3 { margin: 0 0 8px; }
+
+.recent-card table { width: 100%; border-collapse: collapse; }
+.recent-card th, .recent-card td { border: 1px solid #e5e7eb; padding: 10px 12px; text-align: left; }
+.recent-card th { background: #f8fafc; }
+
+.error-text { color: #d92d20; }
+
+

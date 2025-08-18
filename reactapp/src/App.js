@@ -9,6 +9,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { useAuth } from "./context/AuthContext";
+import ApplicantDashboard from "./components/ApplicantDashboard";
 
 function PrivateRoute({ element }) {
     const { user } = useAuth();
@@ -27,7 +28,7 @@ function App() {
                         <Route path="/register" element={<Register />} />
 
                         {/* Protected Routes */}
-                        <Route path="/" element={<PrivateRoute element={<Home />} />} />
+                        <Route path="/" element={<PrivateRoute element={<ApplicantDashboard />} />} />
                         <Route path="/apply" element={<PrivateRoute element={<ApplyForm />} />} />
                         <Route path="/getAllGifts" element={<PrivateRoute element={<DisplayGift />} />} />
                         {/* Placeholder routes removed to prevent undefined component references */}
