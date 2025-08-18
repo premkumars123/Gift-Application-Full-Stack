@@ -27,7 +27,22 @@ function Register() {
             setError("Passwords do not match");
             return;
         }
-        // For this demo, store a flag in sessionStorage only (no backend change)
+        // Persist the new user locally so the login page can authenticate them later
+        try {
+            const raw = localStorage.getItem("giftapp_users");
+            const users = raw ? JSON.parse(raw) : [];
+            const exists = users.some(u => (u.email || "").toLowerCase() === email.toLowerCase());
+            if (exists) {
+                setError("An account with this email already exists");
+                return;
+            }
+            users.push({ email, password });
+            localStorage.setItem("giftapp_users", JSON.stringify(users));
+        } catch (_) {
+            // ignore storage errors in demo mode
+        }
+
+        // Also put the current session user for immediate sign-in
         sessionStorage.setItem("giftapp_user", JSON.stringify({ email }));
         login(email, "user");
         navigate("/");

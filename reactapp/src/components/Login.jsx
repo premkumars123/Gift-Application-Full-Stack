@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Login.css";
 
-const validUsers = [
+const defaultUsers = [
     { email: "admin@example.com", password: "Admin@123", role: "admin" },
     { email: "provider@example.com", password: "Provider@123", role: "provider" },
     { email: "reviewer@example.com", password: "Reviewer@123", role: "reviewer" }
@@ -19,8 +19,16 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const found = validUsers.find(
-            (u) => u.email.trim().toLowerCase() === email.trim().toLowerCase() && u.password === password
+        // Merge default users with any registered users stored in localStorage
+        let registered = [];
+        try {
+            const raw = localStorage.getItem("giftapp_users");
+            registered = raw ? JSON.parse(raw) : [];
+        } catch (_) { /* ignore */ }
+
+        const allUsers = [...defaultUsers, ...registered];
+        const found = allUsers.find(
+            (u) => (u.email || "").trim().toLowerCase() === email.trim().toLowerCase() && u.password === password
         );
         if (found) {
             login(found.email, found.role);
