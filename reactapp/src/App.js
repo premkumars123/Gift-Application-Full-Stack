@@ -29,9 +29,9 @@ function App() {
                         {/* Public Routes (kept to satisfy tests) */}
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/" element={<Home />} />
-                        <Route path="/apply" element={<ApplyForm />} />
-                        <Route path="/getAllGifts" element={<DisplayGift />} />
+                        <Route path="/" element={<PrivateRoute element={<Home />} />} />
+                        <Route path="/apply" element={<PrivateRoute element={<ApplyForm />} />} />
+                        <Route path="/getAllGifts" element={<PrivateRoute element={<DisplayGift />} />} />
 
                         {/* Authenticated dashboards */}
                         <Route path="/dashboard" element={<PrivateRoute element={<ApplicantDashboard />} />} />
