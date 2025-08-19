@@ -38,6 +38,20 @@ nav li {
     transition: color 0.3s, transform 0.2s ease;
 }
 
+/* Ensure the logout button aligns like the links */
+button.nav-link {
+    background: transparent;
+    border: none;
+    color: white;
+    font: inherit;
+    font-weight: bold;
+    padding: 8px 6px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    cursor: pointer;
+}
+
 .nav-link::after {
     content: "";
     position: absolute;
