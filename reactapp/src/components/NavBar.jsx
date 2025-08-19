@@ -12,17 +12,17 @@ function NavBar() {
             <h1>Gift Application</h1>
             <ul>
                 <li>
-                    <Link className="nav-link" to="/">Home</Link>
-                </li>
-                <li>
-                    <Link className="nav-link" to="/getAllGifts">Gift Details</Link>
-                </li>
-                <li style={{marginLeft:'auto'}}>
                     {user ? (
                         <button className="nav-link" style={{background:'transparent', border:'none', cursor:'pointer'}} onClick={logout}>Logout</button>
                     ) : (
                         <Link className="nav-link" to="/login">Login</Link>
                     )}
+                </li>
+                <li>
+                    <Link className="nav-link" to="/">Home</Link>
+                </li>
+                <li>
+                    <Link className="nav-link" to="/getAllGifts">Gift Details</Link>
                 </li>
             </ul>
         </nav>
