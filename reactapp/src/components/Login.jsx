@@ -32,7 +32,7 @@ function Login() {
         );
         if (found) {
             login(found.email, found.role);
-            navigate("/");
+            navigate("/dashboard");
         } else {
             setError("Invalid credentials. Try admin@example.com / Admin@123");
         }
