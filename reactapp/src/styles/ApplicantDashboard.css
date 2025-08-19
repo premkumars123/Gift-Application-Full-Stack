@@ -29,7 +29,7 @@
 
 .recent-card table { width: 100%; border-collapse: collapse; }
 .recent-card th, .recent-card td { border: 1px solid #e5e7eb; padding: 10px 12px; text-align: left; }
-.recent-card th { background: #f8fafc; }
+.recent-card th { background: #f8fafc; color: #0b5ed7; }
 
 .error-text { color: #d92d20; }
 
