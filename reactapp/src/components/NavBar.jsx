@@ -21,6 +21,11 @@ function NavBar() {
                 <li>
                     <Link className="nav-link" to="/">Home</Link>
                 </li>
+                {user && (
+                <li>
+                    <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                </li>
+                )}
                 <li>
                     <Link className="nav-link" to="/getAllGifts">Gift Details</Link>
                 </li>
