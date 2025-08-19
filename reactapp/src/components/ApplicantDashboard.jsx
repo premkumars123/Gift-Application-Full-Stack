@@ -33,12 +33,12 @@ function ApplicantDashboard() {
 			<p className="welcome">Welcome{user?.email ? `, ${user.email}` : ""}!</p>
 
 			<div className="quick-actions">
-				<Link className="qa-btn" to="/apply">Apply Now</Link>
+				<Link className="qa-btn" to="/apply">Submit a New Application</Link>
 				<Link className="qa-btn outline" to="/getAllGifts">View All Gift Applications</Link>
 			</div>
 
 			<div className="recent-card">
-				<h3>Recent Submissions</h3>
+				<h3>All Submitted Applications</h3>
 				{loading ? (
 					<p>Loading...</p>
 				) : error ? (
@@ -49,21 +49,17 @@ function ApplicantDashboard() {
 					<table>
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>Gift Categories</th>
-								<th>Experience</th>
-								<th>Specialization</th>
-								<th>Phone Number</th>
+								<th>Application ID</th>
+								<th>Submission Date</th>
+								<th>Status</th>
 							</tr>
 						</thead>
 						<tbody>
 							{recent.map((g, idx) => (
 								<tr key={idx}>
-									<td>{g.name}</td>
-									<td>{g.giftCategories}</td>
-									<td>{g.experience}</td>
-									<td>{g.specialization}</td>
-									<td>{g.phoneNumber}</td>
+									<td>{g.id || idx + 1}</td>
+									<td>{new Date().toLocaleDateString()}</td>
+									<td>Submitted</td>
 								</tr>
 							))}
 						</tbody>
