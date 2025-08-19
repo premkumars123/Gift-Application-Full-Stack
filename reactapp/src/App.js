@@ -29,7 +29,7 @@ function App() {
                         {/* Public Routes (kept to satisfy tests) */}
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/" element={<PrivateRoute element={<Home />} />} />
+                        <Route path="/" element={<PrivateRoute element={<ApplicantDashboard />} />} />
                         <Route path="/apply" element={<PrivateRoute element={<ApplyForm />} />} />
                         <Route path="/getAllGifts" element={<PrivateRoute element={<DisplayGift />} />} />
 
