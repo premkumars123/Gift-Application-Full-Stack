@@ -37,12 +37,11 @@ test("renders_navbar_in_App_component_with_links", () => {
 
   // Update to match the rendered title
   const titleElement = screen.getByText("Gift Application"); 
-  const homeLink = screen.getByText("Home");
-  const giftDetailsLink = screen.getByText("Gift Details");
-
+  
+  // Since App now requires authentication, we should see the Login component
+  // The navbar should still be visible with Login button
   expect(titleElement).toBeInTheDocument();
-  expect(homeLink).toBeInTheDocument();
-  expect(giftDetailsLink).toBeInTheDocument();
+  expect(screen.getByText("Login")).toBeInTheDocument();
 });
 
 
