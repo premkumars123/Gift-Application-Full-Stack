@@ -6,7 +6,6 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import DisplayGift from "../components/DisplayGift"; // Updated import for gift display component
 import ApplyForm from "../components/ApplyForm"; // Form for applying to become a gift
-import { AuthProvider } from "../context/AuthContext";
 
 test("renders_home_component_with_title_and_description", () => {
   render(
@@ -177,11 +176,7 @@ test('submits_invalid_application_form', () => {
 });
 
 test('checks_all_components_and_routes', () => {
-  render(
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  );
+  render(<App />);
   
   const homeLink = screen.getByText(/Home/i);
   fireEvent.click(homeLink);
