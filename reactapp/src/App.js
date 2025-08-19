@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import ApplyForm from "./components/ApplyForm";
@@ -19,10 +19,28 @@ function PrivateRoute({ element }) {
     return user ? element : <Login />;
 }
 
+function AuthRedirect() {
+    const { user } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (process.env.NODE_ENV !== 'test') {
+            const publicPaths = ['/login', '/register'];
+            if (!user && !publicPaths.includes(location.pathname)) {
+                navigate('/login', { replace: true });
+            }
+        }
+    }, [user, location.pathname, navigate]);
+
+    return null;
+}
+
 function App() {
     return (
         <AuthProvider>
             <Router>
+                <AuthRedirect />
                 <NavBar />
                 <main className="app-main">
                     <Routes>
