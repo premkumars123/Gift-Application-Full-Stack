@@ -1,0 +1,12 @@
+.msa-container{max-width:780px;margin:24px auto;padding:18px;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(16,24,40,.08)}
+.msa-steps{display:flex;gap:8px;margin:6px 0 14px}
+.msa-steps .step{flex:1;padding:8px 10px;border:1px solid #e5e7eb;border-radius:8px;background:#f8fafc;color:#475467;font-weight:600;text-align:center}
+.msa-steps .step.active{border-color:#0d6efd;color:#0b5ed7;background:#eef6ff}
+.msa-form{display:grid;gap:10px}
+.msa-form input,.msa-form textarea{padding:10px 12px;border:1px solid #d0d5dd;border-radius:8px}
+.msa-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.msa-actions button{padding:10px 14px;border:none;border-radius:8px;background:linear-gradient(90deg,#0d6efd,#0b5ed7);color:#fff;font-weight:700;cursor:pointer}
+.msa-actions .secondary{background:#eef2ff;color:#0b5ed7}
+.msa-error{color:#d92d20;margin-bottom:8px}
+.msa-success{color:#10b981;margin-bottom:8px}
+

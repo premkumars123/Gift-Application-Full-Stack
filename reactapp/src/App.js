@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
+import DashboardNavBar from "./components/DashboardNavBar";
 import Home from "./components/Home";
 import ApplyForm from "./components/ApplyForm";
 import DisplayGift from "./components/DisplayGift";
@@ -13,6 +14,7 @@ import ApplicantDashboard from "./components/ApplicantDashboard";
 import ReviewerAdminDashboard from "./components/ReviewerAdminDashboard";
 import ApplicationManagement from "./components/ApplicationManagement";
 import ProviderManagement from "./components/ProviderManagement";
+import MultiStepApplication from "./components/MultiStepApplication";
 
 function PrivateRoute({ element }) {
     const { user } = useAuth();
@@ -36,12 +38,18 @@ function AuthRedirect() {
     return null;
 }
 
+function NavBarSwitcher() {
+    const location = useLocation();
+    const isDashboard = location.pathname.startsWith('/dashboard');
+    return isDashboard ? <DashboardNavBar /> : <NavBar />;
+}
+
 function App() {
     return (
         <AuthProvider>
             <Router>
                 <AuthRedirect />
-                <NavBar />
+                <NavBarSwitcher />
                 <main className="app-main">
                     <Routes>
                         {/* Public Routes (kept to satisfy tests) */}
@@ -56,11 +64,9 @@ function App() {
                         <Route path="/reviewer" element={<PrivateRoute element={<ReviewerAdminDashboard />} />} />
                         <Route path="/manage/applications" element={<PrivateRoute element={<ApplicationManagement />} />} />
                         <Route path="/manage/providers" element={<PrivateRoute element={<ProviderManagement />} />} />
-                        {/* Placeholder routes removed to prevent undefined component references */}
 
-                        {/* Admin & Reviewer Routes */}
-                        {/* <Route path="/reviewer-dashboard" element={<ReviewerAdminDashboard />} /> */}
-                        {/* <Route path="/provider-dashboard" element={<ProviderDashboard />} /> */}
+                        {/* New: multi-step application form (protected) */}
+                        <Route path="/apply/multi" element={<PrivateRoute element={<MultiStepApplication />} />} />
                     </Routes>
                 </main>
                 <Footer />
