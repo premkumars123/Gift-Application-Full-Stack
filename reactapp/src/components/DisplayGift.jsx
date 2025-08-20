@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import '../styles/DisplayGift.css';
 
 function DisplayGift() {
@@ -8,6 +9,7 @@ function DisplayGift() {
     const [showModal, setShowModal] = useState(false);
     const [actionType, setActionType] = useState("");
     const [comments, setComments] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("/getAllGifts", {
@@ -79,8 +81,13 @@ function DisplayGift() {
                 }));
                 setShowModal(false);
                 setSelectedGift(null);
+                const wasApprove = actionType === 'approve';
                 setActionType("");
                 setComments("");
+                if (wasApprove) {
+                    // Navigate to approved list page for easy filtering
+                    navigate('/approvedGifts');
+                }
             }
         } catch (error) {
             console.error('Error updating gift status:', error);
