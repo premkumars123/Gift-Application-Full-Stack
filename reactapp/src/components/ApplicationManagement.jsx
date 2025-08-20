@@ -5,6 +5,10 @@ function ApplicationManagement() {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [query, setQuery] = useState("");
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [actionType, setActionType] = useState("");
+    const [comments, setComments] = useState("");
 
     useEffect(() => {
         fetch("/getAllGifts", { headers: { "Content-Type": "application/json" } })
@@ -25,6 +29,57 @@ function ApplicationManagement() {
                 .some((v) => String(v).toLowerCase().includes(q))
         );
     }, [items, query]);
+
+    const handleAction = (item, type) => {
+        setSelectedItem(item);
+        setActionType(type);
+        setComments("");
+        setShowModal(true);
+    };
+
+    const submitAction = async () => {
+        if (!selectedItem) return;
+
+        const endpoint = actionType === 'approve' ? `/approveGift/${selectedItem.id}` : `/rejectGift/${selectedItem.id}`;
+        
+        try {
+            const response = await fetch(endpoint, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(comments)
+            });
+
+            if (response.ok) {
+                // Update the local state
+                setItems(prevItems => 
+                    prevItems.map(item => 
+                        item.id === selectedItem.id 
+                            ? { ...item, status: actionType === 'approve' ? 'APPROVED' : 'REJECTED', comments }
+                            : item
+                    )
+                );
+                setShowModal(false);
+                setSelectedItem(null);
+                setActionType("");
+                setComments("");
+            }
+        } catch (error) {
+            console.error('Error updating item status:', error);
+        }
+    };
+
+    const getStatusBadge = (status) => {
+        if (!status || status === 'PENDING') {
+            return <span className="status-badge pending">Pending</span>;
+        } else if (status === 'APPROVED') {
+            return <span className="status-badge approved">Approved</span>;
+        } else if (status === 'REJECTED') {
+            return <span className="status-badge rejected">Rejected</span>;
+        }
+        return <span className="status-badge pending">Pending</span>;
+    };
 
     return (
         <div className="mgmt-container card">
@@ -49,6 +104,8 @@ function ApplicationManagement() {
                             <th>Experience</th>
                             <th>Specialization</th>
                             <th>Phone Number</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,10 +116,71 @@ function ApplicationManagement() {
                                 <td>{g.experience}</td>
                                 <td>{g.specialization}</td>
                                 <td>{g.phoneNumber}</td>
+                                <td>{getStatusBadge(g.status)}</td>
+                                <td className="action-buttons">
+                                    {(!g.status || g.status === 'PENDING') && (
+                                        <>
+                                            <button 
+                                                className="btn-approve"
+                                                onClick={() => handleAction(g, 'approve')}
+                                            >
+                                                Approve
+                                            </button>
+                                            <button 
+                                                className="btn-reject"
+                                                onClick={() => handleAction(g, 'reject')}
+                                            >
+                                                Reject
+                                            </button>
+                                        </>
+                                    )}
+                                    {g.comments && (
+                                        <div className="comments-display">
+                                            <strong>Comments:</strong> {g.comments}
+                                        </div>
+                                    )}
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+            )}
+
+            {/* Action Modal */}
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h3>{actionType === 'approve' ? 'Approve' : 'Reject'} Application</h3>
+                        <p><strong>Applicant:</strong> {selectedItem?.name}</p>
+                        <p><strong>Category:</strong> {selectedItem?.giftCategories}</p>
+                        
+                        <div className="comments-section">
+                            <label htmlFor="comments">Comments (Optional):</label>
+                            <textarea
+                                id="comments"
+                                value={comments}
+                                onChange={(e) => setComments(e.target.value)}
+                                placeholder="Add comments for the applicant..."
+                                rows="4"
+                            />
+                        </div>
+
+                        <div className="modal-actions">
+                            <button 
+                                className="btn-cancel"
+                                onClick={() => setShowModal(false)}
+                            >
+                                Cancel
+                            </button>
+                            <button 
+                                className={actionType === 'approve' ? 'btn-approve' : 'btn-reject'}
+                                onClick={submitAction}
+                            >
+                                {actionType === 'approve' ? 'Approve' : 'Reject'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
             )}
         </div>
     );

@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import '../styles/DisplayGift.css';
 
 function DisplayGift() {
     const [gifts, setGifts] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [selectedGift, setSelectedGift] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [actionType, setActionType] = useState("");
+    const [comments, setComments] = useState("");
 
     useEffect(() => {
         fetch("/getAllGifts", {
@@ -19,9 +24,84 @@ function DisplayGift() {
             .catch((err) => console.error(err));
     }, []);
 
+    const filteredGifts = useMemo(() => {
+        if (!searchQuery.trim()) return gifts;
+        const query = searchQuery.toLowerCase();
+        return gifts.filter(gift => 
+            gift.name?.toLowerCase().includes(query) ||
+            gift.giftCategories?.toLowerCase().includes(query) ||
+            gift.specialization?.toLowerCase().includes(query) ||
+            gift.phoneNumber?.includes(query)
+        );
+    }, [gifts, searchQuery]);
+
+    const handleAction = (gift, type) => {
+        setSelectedGift(gift);
+        setActionType(type);
+        setComments("");
+        setShowModal(true);
+    };
+
+    const submitAction = async () => {
+        if (!selectedGift) return;
+
+        const endpoint = actionType === 'approve' ? `/approveGift/${selectedGift.id}` : `/rejectGift/${selectedGift.id}`;
+        
+        try {
+            const response = await fetch(endpoint, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(comments)
+            });
+
+            if (response.ok) {
+                // Update the local state
+                setGifts(prevGifts => 
+                    prevGifts.map(gift => 
+                        gift.id === selectedGift.id 
+                            ? { ...gift, status: actionType === 'approve' ? 'APPROVED' : 'REJECTED', comments }
+                            : gift
+                    )
+                );
+                setShowModal(false);
+                setSelectedGift(null);
+                setActionType("");
+                setComments("");
+            }
+        } catch (error) {
+            console.error('Error updating gift status:', error);
+        }
+    };
+
+    const getStatusBadge = (status) => {
+        if (!status || status === 'PENDING') {
+            return <span className="status-badge pending">Pending</span>;
+        } else if (status === 'APPROVED') {
+            return <span className="status-badge approved">Approved</span>;
+        } else if (status === 'REJECTED') {
+            return <span className="status-badge rejected">Rejected</span>;
+        }
+        return <span className="status-badge pending">Pending</span>;
+    };
+
     return (
         <div className="table-wrapper card" style={{padding: '12px 0'}}>
             <h2>Submitted Gift Applications</h2>
+            
+            {/* Search Bar */}
+            <div className="search-section">
+                <input
+                    type="text"
+                    placeholder="Search by name, category, specialization, or phone number..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="search-input"
+                />
+                <div className="search-count">Total: {filteredGifts.length}</div>
+            </div>
+
             <table>
                 <thead>
                     <tr>
@@ -30,20 +110,83 @@ function DisplayGift() {
                         <th>Experience</th>
                         <th>Specialization</th>
                         <th>Phone Number</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {gifts.map((gift, index) => (
+                    {filteredGifts.map((gift, index) => (
                         <tr key={index}>
                             <td>{gift.name}</td>
                             <td>{gift.giftCategories}</td>
                             <td>{gift.experience}</td>
                             <td>{gift.specialization}</td>
                             <td>{gift.phoneNumber}</td>
+                            <td>{getStatusBadge(gift.status)}</td>
+                            <td className="action-buttons">
+                                {(!gift.status || gift.status === 'PENDING') && (
+                                    <>
+                                        <button 
+                                            className="btn-approve"
+                                            onClick={() => handleAction(gift, 'approve')}
+                                        >
+                                            Approve
+                                        </button>
+                                        <button 
+                                            className="btn-reject"
+                                            onClick={() => handleAction(gift, 'reject')}
+                                        >
+                                            Reject
+                                        </button>
+                                    </>
+                                )}
+                                {gift.comments && (
+                                    <div className="comments-display">
+                                        <strong>Comments:</strong> {gift.comments}
+                                    </div>
+                                )}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            {/* Action Modal */}
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h3>{actionType === 'approve' ? 'Approve' : 'Reject'} Application</h3>
+                        <p><strong>Applicant:</strong> {selectedGift?.name}</p>
+                        <p><strong>Category:</strong> {selectedGift?.giftCategories}</p>
+                        
+                        <div className="comments-section">
+                            <label htmlFor="comments">Comments (Optional):</label>
+                            <textarea
+                                id="comments"
+                                value={comments}
+                                onChange={(e) => setComments(e.target.value)}
+                                placeholder="Add comments for the applicant..."
+                                rows="4"
+                            />
+                        </div>
+
+                        <div className="modal-actions">
+                            <button 
+                                className="btn-cancel"
+                                onClick={() => setShowModal(false)}
+                            >
+                                Cancel
+                            </button>
+                            <button 
+                                className={actionType === 'approve' ? 'btn-approve' : 'btn-reject'}
+                                onClick={submitAction}
+                            >
+                                {actionType === 'approve' ? 'Approve' : 'Reject'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

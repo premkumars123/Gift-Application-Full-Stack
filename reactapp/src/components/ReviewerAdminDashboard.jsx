@@ -22,14 +22,12 @@ function ReviewerAdminDashboard() {
             });
     }, []);
 
-    // Simple summary since backend has no status fields
+    // Summary counts based on status
     const summary = useMemo(() => {
         const total = apps.length;
-        return {
-            total,
-            newCount: total, // treat all as new for demo
-            approvedCount: 0,
-        };
+        const newCount = apps.filter(a => !a.status || a.status === 'PENDING').length;
+        const approvedCount = apps.filter(a => a.status === 'APPROVED').length;
+        return { total, newCount, approvedCount };
     }, [apps]);
 
     const isAdmin = (user?.role || "").toLowerCase() === "admin";
