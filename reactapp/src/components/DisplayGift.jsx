@@ -57,14 +57,25 @@ function DisplayGift() {
             });
 
             if (response.ok) {
-                // Update the local state
-                setGifts(prevGifts => 
-                    prevGifts.map(gift => 
-                        gift.id === selectedGift.id 
-                            ? { ...gift, status: actionType === 'approve' ? 'APPROVED' : 'REJECTED', comments }
-                            : gift
-                    )
-                );
+                // Try to use server response first; fall back to optimistic update
+                let updatedFromServer = null;
+                try {
+                    updatedFromServer = await response.json();
+                } catch (_) {
+                    // ignore parse errors and fall back
+                }
+
+                const nextStatus = actionType === 'approve' ? 'APPROVED' : 'REJECTED';
+                setGifts(prevGifts => prevGifts.map(gift => {
+                    if (gift.id !== selectedGift.id) return gift;
+                    const merged = {
+                        ...gift,
+                        ...(updatedFromServer || {}),
+                        status: (updatedFromServer && updatedFromServer.status) ? updatedFromServer.status : nextStatus,
+                        comments: (updatedFromServer && typeof updatedFromServer.comments !== 'undefined') ? updatedFromServer.comments : comments
+                    };
+                    return merged;
+                }));
                 setShowModal(false);
                 setSelectedGift(null);
                 setActionType("");

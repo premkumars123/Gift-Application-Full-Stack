@@ -52,14 +52,23 @@ function ApplicationManagement() {
             });
 
             if (response.ok) {
-                // Update the local state
-                setItems(prevItems => 
-                    prevItems.map(item => 
-                        item.id === selectedItem.id 
-                            ? { ...item, status: actionType === 'approve' ? 'APPROVED' : 'REJECTED', comments }
-                            : item
-                    )
-                );
+                // Use response JSON if available; otherwise optimistic update
+                let updatedFromServer = null;
+                try {
+                    updatedFromServer = await response.json();
+                } catch (_) {}
+
+                const nextStatus = actionType === 'approve' ? 'APPROVED' : 'REJECTED';
+                setItems(prevItems => prevItems.map(item => {
+                    if (item.id !== selectedItem.id) return item;
+                    const merged = {
+                        ...item,
+                        ...(updatedFromServer || {}),
+                        status: (updatedFromServer && updatedFromServer.status) ? updatedFromServer.status : nextStatus,
+                        comments: (updatedFromServer && typeof updatedFromServer.comments !== 'undefined') ? updatedFromServer.comments : comments
+                    };
+                    return merged;
+                }));
                 setShowModal(false);
                 setSelectedItem(null);
                 setActionType("");
