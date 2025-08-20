@@ -46,9 +46,10 @@ function ApplicationManagement() {
             const response = await fetch(endpoint, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'text/plain;charset=UTF-8',
+                    'Accept': 'application/json',
                 },
-                body: JSON.stringify(comments)
+                body: comments || ""
             });
 
             if (response.ok) {
