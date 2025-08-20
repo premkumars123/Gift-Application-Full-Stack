@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import '../styles/DisplayGift.css';
 
 function DisplayGift() {
@@ -9,7 +8,6 @@ function DisplayGift() {
     const [showModal, setShowModal] = useState(false);
     const [actionType, setActionType] = useState("");
     const [comments, setComments] = useState("");
-    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("/getAllGifts", {
@@ -85,8 +83,10 @@ function DisplayGift() {
                 setActionType("");
                 setComments("");
                 if (wasApprove) {
-                    // Navigate to approved list page for easy filtering
-                    navigate('/approvedGifts');
+                    // Navigate to approved list page for easy filtering without Router dependency
+                    if (typeof window !== 'undefined' && window.location) {
+                        window.location.href = '/approvedGifts';
+                    }
                 }
             }
         } catch (error) {
