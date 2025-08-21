@@ -11,7 +11,7 @@ function DisplayGift() {
     const [showSuccess, setShowSuccess] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
     useEffect(() => {
-        fetch("/getAllGifts", {
+        fetch("https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/getAllGifts", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function DisplayGift() {
     const submitAction = async () => {
         if (!selectedGift) return;
 
-        const endpoint = actionType === 'approve' ? `/approveGift/${selectedGift.id}` : `/rejectGift/${selectedGift.id}`;
+        const endpoint = actionType === 'approve' ? `https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/approveGift/${selectedGift.id}` : `https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/rejectGift/${selectedGift.id}`;
         
         try {
             const response = await fetch(endpoint, {

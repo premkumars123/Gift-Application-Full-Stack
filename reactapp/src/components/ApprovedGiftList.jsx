@@ -8,7 +8,7 @@ function ApprovedGiftList() {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        fetch("/getAllGifts", { headers: { "Content-Type": "application/json" } })
+        fetch("https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/getAllGifts", { headers: { "Content-Type": "application/json" } })
             .then((r) => r.json())
             .then((data) => {
                 setGifts(Array.isArray(data) ? data : []);
