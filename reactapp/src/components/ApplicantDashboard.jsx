@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/ApplicantDashboard.css";
+import { API_BASE } from "../api";
 
 function ApplicantDashboard() {
 	const { user } = useAuth();
@@ -10,7 +11,7 @@ function ApplicantDashboard() {
 	const [error, setError] = useState("");
 
 	useEffect(() => {
-		fetch("https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/getAllGifts", {
+		fetch(`${API_BASE}/getAllGifts`, {
 			method: "GET",
 			headers: { "Content-Type": "application/json" }
 		})

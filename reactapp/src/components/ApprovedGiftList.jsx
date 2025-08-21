@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "../styles/DisplayGift.css";
+import { API_BASE } from "../api";
 
 function ApprovedGiftList() {
     const [gifts, setGifts] = useState([]);
@@ -8,7 +9,7 @@ function ApprovedGiftList() {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        fetch("https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/getAllGifts", { headers: { "Content-Type": "application/json" } })
+        fetch(`${API_BASE}/getAllGifts`, { headers: { "Content-Type": "application/json" } })
             .then((r) => r.json())
             .then((data) => {
                 setGifts(Array.isArray(data) ? data : []);

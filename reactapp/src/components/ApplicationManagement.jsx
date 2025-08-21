@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "../styles/Management.css";
+import { API_BASE } from "../api";
 
 function ApplicationManagement() {
     const [items, setItems] = useState([]);
@@ -13,7 +14,7 @@ function ApplicationManagement() {
     const [successMessage, setSuccessMessage] = useState("");
 
     useEffect(() => {
-        fetch("https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/getAllGifts", { headers: { "Content-Type": "application/json" } })
+        fetch(`${API_BASE}/getAllGifts`, { headers: { "Content-Type": "application/json" } })
             .then((r) => r.json())
             .then((data) => {
                 setItems(Array.isArray(data) ? data : []);
@@ -42,7 +43,7 @@ function ApplicationManagement() {
     const submitAction = async () => {
         if (!selectedItem) return;
 
-        const endpoint = actionType === 'approve' ? `https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/approveGift/${selectedItem.id}` : `https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/rejectGift/${selectedItem.id}`;
+        const endpoint = actionType === 'approve' ? `${API_BASE}/approveGift/${selectedItem.id}` : `${API_BASE}/rejectGift/${selectedItem.id}`;
         
         try {
             const response = await fetch(endpoint, {

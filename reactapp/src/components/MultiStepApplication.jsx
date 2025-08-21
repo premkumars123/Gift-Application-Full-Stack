@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/MultiStepApplication.css";
+import { API_BASE } from "../api";
 
 function MultiStepApplication() {
 	const [step, setStep] = useState(1);
@@ -50,7 +51,7 @@ function MultiStepApplication() {
 		setError("");
 		setSuccess("");
 		try {
-			const res = await fetch("https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/api/applications", {
+			const res = await fetch(`${API_BASE}/api/applications`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({

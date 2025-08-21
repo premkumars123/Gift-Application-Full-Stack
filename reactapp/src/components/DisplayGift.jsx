@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import '../styles/DisplayGift.css';
+import { API_BASE } from "../api";
 
 function DisplayGift() {
     const [gifts, setGifts] = useState([]);
@@ -11,7 +12,7 @@ function DisplayGift() {
     const [showSuccess, setShowSuccess] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
     useEffect(() => {
-        fetch("https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/getAllGifts", {
+        fetch(`${API_BASE}/getAllGifts`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -46,7 +47,7 @@ function DisplayGift() {
     const submitAction = async () => {
         if (!selectedGift) return;
 
-        const endpoint = actionType === 'approve' ? `https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/approveGift/${selectedGift.id}` : `https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/rejectGift/${selectedGift.id}`;
+        const endpoint = actionType === 'approve' ? `${API_BASE}/approveGift/${selectedGift.id}` : `${API_BASE}/rejectGift/${selectedGift.id}`;
         
         try {
             const response = await fetch(endpoint, {

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/ReviewerAdminDashboard.css";
+import { API_BASE } from "../api";
 
 function ReviewerAdminDashboard() {
     const { user } = useAuth();
@@ -10,7 +11,7 @@ function ReviewerAdminDashboard() {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        fetch("https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/getAllGifts", { headers: { "Content-Type": "application/json" } })
+        fetch(`${API_BASE}/getAllGifts`, { headers: { "Content-Type": "application/json" } })
             .then((r) => r.json())
             .then((data) => {
                 setApps(Array.isArray(data) ? data : []);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/ApplyForm.css';
+import { API_BASE } from '../api';
 
 const ApplyForm = () => {
     const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ const ApplyForm = () => {
         }
 
         try {
-            const res = await fetch('https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/addGift', {
+            const res = await fetch(`${API_BASE}/addGift`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
