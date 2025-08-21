@@ -63,241 +63,280 @@ function DisplayGift() {
     //             },
     //             body: comments || ""
     //         });
+    //     const submitAction = async () => {
+    //     if (!selectedGift) return;
+
+    //     const endpoint = `${API_BASE}/deleteGift/${selectedGift.id}`;
+
+    //     // Create updated payload with new status and optional comments
+    //     const payload = {
+    //         ...selectedGift,
+    //         status: actionType === 'approve' ? 'APPROVED' : 'REJECTED',
+    //         comments: comments || ""
+    //     };
+
+    //     try {
+    //         const response = await fetch(endpoint, {
+    //             method: 'DELETE',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Accept': 'application/json',
+    //             },
+    //             body: JSON.stringify(payload)
+    //         });
+
+    //         if (response.ok) {
+    //             const updated = await response.json();
+
+    //             // Update gift list in UI
+    //             setGifts(prevGifts =>
+    //                 prevGifts.map(g =>
+    //                     g.id === updated.id ? { ...g, ...updated } : g
+    //                 )
+    //             );
+
+    //             setShowModal(false);
+    //             setSelectedGift(null);
+    //             setActionType("");
+    //             setComments("");
+
+    //             const wasApprove = actionType === 'approve';
+    //             setSuccessMessage(wasApprove ? "Approved Successfully!" : "Rejected Successfully!");
+    //             setShowSuccess(true);
+
+    //             setTimeout(() => {
+    //                 setShowSuccess(false);
+    //             }, 3000);
+
+    //         } else {
+    //             throw new Error('Failed to update application');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error updating application:', error);
+    //         setSuccessMessage("Error: " + error.message);
+    //         setShowSuccess(true);
+    //         setTimeout(() => setShowSuccess(false), 3000);
+    //     }
+    // };
+
     const submitAction = async () => {
-    if (!selectedGift) return;
+        if (!selectedGift) return;
 
-    const endpoint = `${API_BASE}/editGift/${selectedGift.id}`;
+        const endpoint = `${API_BASE}/deleteGift/${selectedGift.id}`;
 
-    // Create updated payload with new status and optional comments
-    const payload = {
-        ...selectedGift,
-        status: actionType === 'approve' ? 'APPROVED' : 'REJECTED',
-        comments: comments || ""
+        try {
+            const response = await fetch(endpoint, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                // Remove the gift from the UI
+                setGifts(prevGifts =>
+                    prevGifts.filter(g => g.id !== selectedGift.id)
+                );
+
+                setShowModal(false);
+                setSelectedGift(null);
+                setActionType("");
+                setComments("");
+
+                const wasApprove = actionType === 'approve';
+                setSuccessMessage(wasApprove ? "Approved GIFT Successfully!" : "Rejected !!");
+                setShowSuccess(true);
+
+                setTimeout(() => {
+                    setShowSuccess(false);
+                }, 3000);
+            } else {
+                throw new Error('Failed to delete gift');
+            }
+        } catch (error) {
+            console.error('Error deleting gift:', error);
+            setSuccessMessage("Error: " + error.message);
+            setShowSuccess(true);
+            setTimeout(() => setShowSuccess(false), 3000);
+        }
     };
 
-    try {
-        const response = await fetch(endpoint, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify(payload)
-        });
 
-        if (response.ok) {
-            const updated = await response.json();
+    // if (response.ok) {
+    //     // Try to use server response first; fall back to optimistic update
+    //     let updatedFromServer = null;
+    //     try {
+    //         updatedFromServer = await response.json();
+    //     } catch (_) {
+    //         // ignore parse errors and fall back
+    //     }
 
-            // Update gift list in UI
-            setGifts(prevGifts =>
-                prevGifts.map(g =>
-                    g.id === updated.id ? { ...g, ...updated } : g
-                )
-            );
+    //     const nextStatus = actionType === 'approve' ? 'APPROVED' : 'REJECTED';
+    //     setGifts(prevGifts => prevGifts.map(gift => {
+    //         if (gift.id !== selectedGift.id) return gift;
+    //         const merged = {
+    //             ...gift,
+    //             ...(updatedFromServer || {}),
+    //             status: (updatedFromServer && updatedFromServer.status) ? updatedFromServer.status : nextStatus,
+    //             comments: (updatedFromServer && typeof updatedFromServer.comments !== 'undefined') ? updatedFromServer.comments : comments
+    //         };
+    //         return merged;
+    //     }));
+    //     setShowModal(false);
+    //     setSelectedGift(null);
+    //     const wasApprove = actionType === 'approve';
+    //     setActionType("");
+    //     setComments("");
 
-            setShowModal(false);
-            setSelectedGift(null);
-            setActionType("");
-            setComments("");
+    //     // Show success popup
+    //     setSuccessMessage(wasApprove ? "Approved Successfully!" : "Rejected Successfully!");
+    //     setShowSuccess(true);
+    //     console.log('Success popup should show:', wasApprove ? "Approved Successfully!" : "Rejected Successfully!");
 
-            const wasApprove = actionType === 'approve';
-            setSuccessMessage(wasApprove ? "Approved Successfully!" : "Rejected Successfully!");
-            setShowSuccess(true);
+    //     // Hide popup after 3 seconds
+    //     setTimeout(() => {
+    //         setShowSuccess(false);
+    //         console.log('Hiding success popup');
+    //     }, 3000);
 
-            setTimeout(() => {
-                setShowSuccess(false);
-            }, 3000);
+    //     if (wasApprove) {
+    //         // Navigate to approved list page for easy filtering without Router dependency
+    //         if (typeof window !== 'undefined' && window.location) {
+    //             window.location.href = '/approvedGifts';
+    //         }
+    //     }
+    // }
+    //         } catch (error) {
+    //     console.error('Error updating gift status:', error);
+    //     // Show error popup for debugging
+    //     setSuccessMessage("Error: " + error.message);
+    //     setShowSuccess(true);
+    //     setTimeout(() => setShowSuccess(false), 3000);
+    // }
+    //     };
 
-        } else {
-            throw new Error('Failed to update application');
+    const getStatusBadge = (status) => {
+        const normalized = (status || '').toUpperCase();
+        if (normalized === 'Approved') {
+            return <span className="status-badge pending">Approved</span>;
+        } else if (normalized === 'REJECTED') {
+            return <span className="status-badge approved">Rejected</span>;
         }
-    } catch (error) {
-        console.error('Error updating application:', error);
-        setSuccessMessage("Error: " + error.message);
-        setShowSuccess(true);
-        setTimeout(() => setShowSuccess(false), 3000);
-    }
-};
+        else {
+            return <span className="status-badge pending">Pending</span>;
+        }
+    };
 
+    return (
+        <div className="table-wrapper card" style={{ padding: '12px 0' }}>
+            <h2>Submitted Gift Applications</h2>
 
-// if (response.ok) {
-//     // Try to use server response first; fall back to optimistic update
-//     let updatedFromServer = null;
-//     try {
-//         updatedFromServer = await response.json();
-//     } catch (_) {
-//         // ignore parse errors and fall back
-//     }
+            {/* Search Bar */}
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Search by name, category, specialization, or phone number..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="search-input"
+                />
+                <div className="search-count">Total: {filteredGifts.length}</div>
+            </div>
 
-//     const nextStatus = actionType === 'approve' ? 'APPROVED' : 'REJECTED';
-//     setGifts(prevGifts => prevGifts.map(gift => {
-//         if (gift.id !== selectedGift.id) return gift;
-//         const merged = {
-//             ...gift,
-//             ...(updatedFromServer || {}),
-//             status: (updatedFromServer && updatedFromServer.status) ? updatedFromServer.status : nextStatus,
-//             comments: (updatedFromServer && typeof updatedFromServer.comments !== 'undefined') ? updatedFromServer.comments : comments
-//         };
-//         return merged;
-//     }));
-//     setShowModal(false);
-//     setSelectedGift(null);
-//     const wasApprove = actionType === 'approve';
-//     setActionType("");
-//     setComments("");
-
-//     // Show success popup
-//     setSuccessMessage(wasApprove ? "Approved Successfully!" : "Rejected Successfully!");
-//     setShowSuccess(true);
-//     console.log('Success popup should show:', wasApprove ? "Approved Successfully!" : "Rejected Successfully!");
-
-//     // Hide popup after 3 seconds
-//     setTimeout(() => {
-//         setShowSuccess(false);
-//         console.log('Hiding success popup');
-//     }, 3000);
-
-//     if (wasApprove) {
-//         // Navigate to approved list page for easy filtering without Router dependency
-//         if (typeof window !== 'undefined' && window.location) {
-//             window.location.href = '/approvedGifts';
-//         }
-//     }
-// }
-//         } catch (error) {
-//     console.error('Error updating gift status:', error);
-//     // Show error popup for debugging
-//     setSuccessMessage("Error: " + error.message);
-//     setShowSuccess(true);
-//     setTimeout(() => setShowSuccess(false), 3000);
-// }
-//     };
-
-const getStatusBadge = (status) => {
-    const normalized = (status || '').toUpperCase();
-    if (normalized === 'Approved') {
-        return <span className="status-badge pending">Approved</span>;
-    } else if (normalized === 'REJECTED') {
-        return <span className="status-badge approved">Rejected</span>;
-    }
-    else {
-        return <span className="status-badge pending">Pending</span>;
-    }
-};
-
-return (
-    <div className="table-wrapper card" style={{ padding: '12px 0' }}>
-        <h2>Submitted Gift Applications</h2>
-
-        {/* Search Bar */}
-        <div className="search-container">
-            <input
-                type="text"
-                placeholder="Search by name, category, specialization, or phone number..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="search-input"
-            />
-            <div className="search-count">Total: {filteredGifts.length}</div>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Gift Categories</th>
-                    <th>Experience</th>
-                    <th>Specialization</th>
-                    <th>Phone Number</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {filteredGifts.map((gift, index) => (
-                    <tr key={index}>
-                        <td>{gift.name}</td>
-                        <td>{gift.giftCategories}</td>
-                        <td>{gift.experience}</td>
-                        <td>{gift.specialization}</td>
-                        <td>{gift.phoneNumber}</td>
-                        <td>{getStatusBadge(gift.status)}</td>
-                        <td className="action-buttons">
-                            {(!gift.status || gift.status === 'PENDING') && (
-                                <>
-                                    <button
-                                        className="btn-approve"
-                                        onClick={() => handleAction(gift, 'approve')}
-                                    >
-                                        Approve
-                                    </button>
-                                    <button
-                                        className="btn-reject"
-                                        onClick={() => handleAction(gift, 'reject')}
-                                    >
-                                        Reject
-                                    </button>
-                                </>
-                            )}
-                            {gift.comments && (
-                                <div className="comments-display">
-                                    <strong>Comments:</strong> {gift.comments}
-                                </div>
-                            )}
-                        </td>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Gift Categories</th>
+                        <th>Experience</th>
+                        <th>Specialization</th>
+                        <th>Phone Number</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {filteredGifts.map((gift, index) => (
+                        <tr key={index}>
+                            <td>{gift.name}</td>
+                            <td>{gift.giftCategories}</td>
+                            <td>{gift.experience}</td>
+                            <td>{gift.specialization}</td>
+                            <td>{gift.phoneNumber}</td>
+                            <td>{getStatusBadge(gift.status)}</td>
+                            <td className="action-buttons">
+                                {(!gift.status || gift.status === 'PENDING') && (
+                                    <>
+                                        <button
+                                            className="btn-approve"
+                                            onClick={() => handleAction(gift, 'approve')}
+                                        >
+                                            Approve
+                                        </button>
+                                        <button
+                                            className="btn-reject"
+                                            onClick={() => handleAction(gift, 'reject')}
+                                        >
+                                            Reject
+                                        </button>
+                                    </>
+                                )}
+                                {gift.comments && (
+                                    <div className="comments-display">
+                                        <strong>Comments:</strong> {gift.comments}
+                                    </div>
+                                )}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
 
-        {/* Action Modal */}
-        {showModal && (
-            <div className="modal-overlay">
-                <div className="modal-content">
-                    <h3>{actionType === 'approve' ? 'Approve' : 'Reject'} Application</h3>
-                    <p><strong>Applicant:</strong> {selectedGift?.name}</p>
-                    <p><strong>Category:</strong> {selectedGift?.giftCategories}</p>
+            {/* Action Modal */}
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h3>{actionType === 'approve' ? 'Approve' : 'Reject'} Application</h3>
+                        <p><strong>Applicant:</strong> {selectedGift?.name}</p>
+                        <p><strong>Category:</strong> {selectedGift?.giftCategories}</p>
 
-                    <div className="comments-section">
-                        <label htmlFor="comments">Comments (Optional):</label>
-                        <textarea
-                            id="comments"
-                            value={comments}
-                            onChange={(e) => setComments(e.target.value)}
-                            placeholder="Add comments for the applicant..."
-                            rows="4"
-                        />
-                    </div>
+                        <div className="comments-section">
+                            <label htmlFor="comments">Comments (Optional):</label>
+                            <textarea
+                                id="comments"
+                                value={comments}
+                                onChange={(e) => setComments(e.target.value)}
+                                placeholder="Add comments for the applicant..."
+                                rows="4"
+                            />
+                        </div>
 
-                    <div className="modal-actions">
-                        <button
-                            className="btn-cancel"
-                            onClick={() => setShowModal(false)}
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            className={actionType === 'approve' ? 'btn-approve' : 'btn-reject'}
-                            onClick={submitAction}
-                        >
-                            {actionType === 'approve' ? 'Approve' : 'Reject'}
-                        </button>
+                        <div className="modal-actions">
+                            <button
+                                className="btn-cancel"
+                                onClick={() => setShowModal(false)}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className={actionType === 'approve' ? 'btn-approve' : 'btn-reject'}
+                                onClick={submitAction}
+                            >
+                                {actionType === 'approve' ? 'Approve' : 'Reject'}
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        )}
+            )}
 
-        {/* Success Popup */}
-        {showSuccess && (
-            <div className="success-popup" style={{ zIndex: 9999 }}>
-                <div className="success-content">
-                    <span className="success-icon">✓</span>
-                    <span className="success-text">{successMessage}</span>
+            {/* Success Popup */}
+            {showSuccess && (
+                <div className="success-popup" style={{ zIndex: 9999 }}>
+                    <div className="success-content">
+                        <span className="success-icon">✓</span>
+                        <span className="success-text">{successMessage}</span>
+                    </div>
                 </div>
-            </div>
-        )}
-    </div>
-);
+            )}
+        </div>
+    );
 }
 
 export default DisplayGift;

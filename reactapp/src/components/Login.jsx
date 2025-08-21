@@ -76,10 +76,6 @@ function Login() {
                 <button type="submit">Login</button>
             </form>
             <div className="login-hint">
-                <p><strong>Sample credentials</strong></p>
-                <p>admin@example.com / Admin@123</p>
-                <p>provider@example.com / Provider@123</p>
-                <p>reviewer@example.com / Reviewer@123</p>
                 <p style={{marginTop:8}}>
                     New user? <Link to="/register">Create an account</Link>
                 </p>
