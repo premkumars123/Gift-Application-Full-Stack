@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { API_BASE } from "../api";
 import "../styles/Login.css";
 
 const defaultUsers = [
@@ -17,7 +18,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Merge default users with any registered users stored in localStorage
         let registered = [];
@@ -31,6 +32,15 @@ function Login() {
             (u) => (u.email || "").trim().toLowerCase() === email.trim().toLowerCase() && u.password === password
         );
         if (found) {
+            // Best-effort: upsert user to backend list so /api/users shows them
+            try {
+                await fetch(`${API_BASE}/api/users`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: found.email, passwordHash: 'N/A', role: (found.role || 'APPLICANT').toUpperCase(), name: found.email.split('@')[0] })
+                });
+            } catch (_) { /* ignore failures */ }
+
             login(found.email, found.role);
             navigate("/dashboard");
         } else {

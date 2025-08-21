@@ -1,6 +1,7 @@
 package com.examly.springapp.controller;
 
 import com.examly.springapp.model.User;
+import com.examly.springapp.model.Role;
 import com.examly.springapp.repository.UserRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,7 +27,21 @@ public class UserController {
 
     @PostMapping
     @Operation(summary = "Create a user")
-    public User create(@RequestBody User body) { return userRepository.save(body); }
+    public User create(@RequestBody User body) {
+        if (body.getEmail() == null || body.getEmail().trim().isEmpty()) {
+            return body; // no-op for invalid payloads in demo mode
+        }
+        return userRepository.findByEmail(body.getEmail())
+                .orElseGet(() -> {
+                    if (body.getRole() == null) {
+                        body.setRole(Role.APPLICANT);
+                    }
+                    if (body.getPasswordHash() == null || body.getPasswordHash().trim().isEmpty()) {
+                        body.setPasswordHash("N/A");
+                    }
+                    return userRepository.save(body);
+                });
+    }
 
     @GetMapping("/{id}")
     @Operation(summary = "Get a user by id")

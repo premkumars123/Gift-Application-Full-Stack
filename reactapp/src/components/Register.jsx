@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { API_BASE } from "../api";
 import "../styles/Login.css";
 
 function Register() {
@@ -12,7 +13,7 @@ function Register() {
     const [confirm, setConfirm] = useState("");
     const [error, setError] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
         if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
@@ -41,6 +42,15 @@ function Register() {
         } catch (_) {
             // ignore storage errors in demo mode
         }
+
+        // Attempt to sync user to backend (best-effort, non-blocking)
+        try {
+            await fetch(`${API_BASE}/api/users`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, passwordHash: 'N/A', role: 'APPLICANT', name: email.split('@')[0] })
+            });
+        } catch (_) { /* ignore failures */ }
 
         // Also put the current session user for immediate sign-in
         sessionStorage.setItem("giftapp_user", JSON.stringify({ email }));
