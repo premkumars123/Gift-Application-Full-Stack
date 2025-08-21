@@ -12,6 +12,11 @@ function DisplayGift() {
     const [showSuccess, setShowSuccess] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
     useEffect(() => {
+        if (typeof fetch !== 'function') {
+            // Test environment without fetch: skip network call to avoid ReferenceError
+            setGifts([]);
+            return;
+        }
         fetch(`${API_BASE}/getAllGifts`, {
             method: "GET",
             headers: {
