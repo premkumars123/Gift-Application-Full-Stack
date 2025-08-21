@@ -3,7 +3,7 @@
   max-width: 420px;
   margin: 48px auto;
   padding: 28px 24px;
-  background: #ffffff;
+  background: url(https://i.pinimg.com/originals/14/12/58/141258a3d8ac3129bc0e2abb7c3bd78e.gif);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
 }
@@ -56,3 +56,10 @@
 }
 
 
+body {
+  background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3A1MXlkaGJ5eW56bDNvM21pa3I4ajJrcWxjMzJkb2YxdGZ1OWlmdSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MyWrJJIdAfoJuEPlLP/giphy.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

@@ -15,6 +15,8 @@ public class Gift {
     private String experience; 
     private String specialization;
     private String phoneNumber;
+    //private String status = "PENDING";
+    //private String comments = ""; 
 
     public Gift() {
     }
