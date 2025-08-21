@@ -88,9 +88,13 @@ function DisplayGift() {
                 // Show success popup
                 setSuccessMessage(wasApprove ? "Approved Successfully!" : "Rejected Successfully!");
                 setShowSuccess(true);
+                console.log('Success popup should show:', wasApprove ? "Approved Successfully!" : "Rejected Successfully!");
                 
                 // Hide popup after 3 seconds
-                setTimeout(() => setShowSuccess(false), 3000);
+                setTimeout(() => {
+                    setShowSuccess(false);
+                    console.log('Hiding success popup');
+                }, 3000);
                 
                 if (wasApprove) {
                     // Navigate to approved list page for easy filtering without Router dependency
@@ -101,6 +105,10 @@ function DisplayGift() {
             }
         } catch (error) {
             console.error('Error updating gift status:', error);
+            // Show error popup for debugging
+            setSuccessMessage("Error: " + error.message);
+            setShowSuccess(true);
+            setTimeout(() => setShowSuccess(false), 3000);
         }
     };
 
@@ -219,7 +227,7 @@ function DisplayGift() {
             
             {/* Success Popup */}
             {showSuccess && (
-                <div className="success-popup">
+                <div className="success-popup" style={{zIndex: 9999}}>
                     <div className="success-content">
                         <span className="success-icon">✓</span>
                         <span className="success-text">{successMessage}</span>
