@@ -8,6 +8,8 @@ function DisplayGift() {
     const [showModal, setShowModal] = useState(false);
     const [actionType, setActionType] = useState("");
     const [comments, setComments] = useState("");
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [successMessage, setSuccessMessage] = useState("");
 
     useEffect(() => {
         fetch("/getAllGifts", {
@@ -82,6 +84,14 @@ function DisplayGift() {
                 const wasApprove = actionType === 'approve';
                 setActionType("");
                 setComments("");
+                
+                // Show success popup
+                setSuccessMessage(wasApprove ? "Approved Successfully!" : "Rejected Successfully!");
+                setShowSuccess(true);
+                
+                // Hide popup after 3 seconds
+                setTimeout(() => setShowSuccess(false), 3000);
+                
                 if (wasApprove) {
                     // Navigate to approved list page for easy filtering without Router dependency
                     if (typeof window !== 'undefined' && window.location) {
@@ -203,6 +213,16 @@ function DisplayGift() {
                                 {actionType === 'approve' ? 'Approve' : 'Reject'}
                             </button>
                         </div>
+                    </div>
+                </div>
+            )}
+            
+            {/* Success Popup */}
+            {showSuccess && (
+                <div className="success-popup">
+                    <div className="success-content">
+                        <span className="success-icon">✓</span>
+                        <span className="success-text">{successMessage}</span>
                     </div>
                 </div>
             )}
