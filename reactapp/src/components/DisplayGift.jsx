@@ -10,7 +10,6 @@ function DisplayGift() {
     const [comments, setComments] = useState("");
     const [showSuccess, setShowSuccess] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
-
     useEffect(() => {
         fetch("https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/getAllGifts", {
             method: "GET",

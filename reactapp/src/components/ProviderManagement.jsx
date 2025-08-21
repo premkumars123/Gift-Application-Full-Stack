@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import "../styles/ProviderManagement.css";
+//import "./ProviderManagement.css";
 
 function ProviderManagement() {
   const [items, setItems] = useState([]);
