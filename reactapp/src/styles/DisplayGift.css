@@ -6,8 +6,8 @@ h2 {
 
 /* Optional wrapper in case you add one later */
 .table-wrapper {
-    overflow-x: auto;
-    padding: 0 12px;
+  overflow-x: auto;
+  padding: 0 12px;
 }
 
 table {
@@ -23,8 +23,8 @@ table {
 
 th,
 td {
-    padding: 12px;
-    text-align: center;
+  padding: 12px;
+  text-align: center;
 }
 
 th {
@@ -34,7 +34,7 @@ th {
 }
 
 tr:nth-child(even) {
-    background-color: #f8f9fa;
+  background-color: #f8f9fa;
 }
 
 tr:hover {
@@ -43,8 +43,9 @@ tr:hover {
 }
 
 td {
-    border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
+
 /* Responsive table scroll */
 .table-wrapper {
   overflow-x: auto;
@@ -52,13 +53,39 @@ td {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-container {
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.search-bar:focus {
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+}
+
+.search-bar {
+  width: 60%;
+  max-width: 700px;
+  padding: 16px 24px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  /* Fully rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: all 0.3s ease-in-out;
 }

@@ -128,9 +128,9 @@ function DisplayGift() {
             <h2>Submitted Gift Applications</h2>
             
             {/* Search Bar */}
-            <div className="search-section">
+            <div className="search-container">
                 <input
-                    type="text"
+                    type="text" class="search-bar"
                     placeholder="Search by name, category, specialization, or phone number..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
