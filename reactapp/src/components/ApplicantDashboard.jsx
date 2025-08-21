@@ -10,7 +10,7 @@ function ApplicantDashboard() {
 	const [error, setError] = useState("");
 
 	useEffect(() => {
-		fetch("https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/getAllGifts", {
+		fetch("/getAllGifts", {
 			method: "GET",
 			headers: { "Content-Type": "application/json" }
 		})
