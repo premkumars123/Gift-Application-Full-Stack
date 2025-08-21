@@ -43,19 +43,22 @@ const ApplyForm = () => {
         }
 
         try {
+            const requestBody = {
+                name: formData.businessName,
+                giftCategories: formData.contactPerson,
+                experience: formData.portfolioLink,
+                specialization: formData.comments,
+                phoneNumber: formData.phone
+            };
+            
+            console.log('Sending request to addGift:', requestBody);
+            
             const res = await fetch('https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/addGift', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    applicantId: formData.applicantId,
-                    name: formData.businessName,
-                    giftCategories: formData.contactPerson,
-                    experience: formData.portfolioLink,
-                    specialization: formData.comments,
-                    phoneNumber: formData.phone
-                })
+                body: JSON.stringify(requestBody)
             });
 
             if (res.ok) {
@@ -73,11 +76,13 @@ const ApplyForm = () => {
                 let message = 'Something went wrong. Please try again.';
                 try {
                     const text = await res.text();
+                    console.log('Error response:', text);
                     if (text) message = text;
                 } catch (_) { /* ignore */ }
                 setErrors({ general: message });
             }
         } catch (error) {
+            console.error('Network error:', error);
             setErrors({ general: 'Error submitting the form. Try again later.' });
         }
     };
