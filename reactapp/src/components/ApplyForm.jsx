@@ -43,7 +43,7 @@ const ApplyForm = () => {
         }
 
         try {
-            const res = await fetch('/addGift', {
+            const res = await fetch('https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/addGift', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
