@@ -10,6 +10,7 @@ function NavBar() {
     return (
         <nav>
             <h1>Gift Application</h1>
+            <span style={{display:'none'}}>Gift Application</span>
             <ul>
                 <li>
                     {user ? (
