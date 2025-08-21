@@ -9,6 +9,8 @@ function ApplicationManagement() {
     const [showModal, setShowModal] = useState(false);
     const [actionType, setActionType] = useState("");
     const [comments, setComments] = useState("");
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [successMessage, setSuccessMessage] = useState("");
 
     useEffect(() => {
         fetch("/getAllGifts", { headers: { "Content-Type": "application/json" } })
@@ -74,6 +76,13 @@ function ApplicationManagement() {
                 setSelectedItem(null);
                 setActionType("");
                 setComments("");
+                
+                // Show success popup
+                setSuccessMessage(actionType === 'approve' ? "Approved Successfully!" : "Rejected Successfully!");
+                setShowSuccess(true);
+                
+                // Hide popup after 3 seconds
+                setTimeout(() => setShowSuccess(false), 3000);
             }
         } catch (error) {
             console.error('Error updating item status:', error);
@@ -189,6 +198,16 @@ function ApplicationManagement() {
                                 {actionType === 'approve' ? 'Approve' : 'Reject'}
                             </button>
                         </div>
+                    </div>
+                </div>
+            )}
+            
+            {/* Success Popup */}
+            {showSuccess && (
+                <div className="success-popup">
+                    <div className="success-content">
+                        <span className="success-icon">✓</span>
+                        <span className="success-text">{successMessage}</span>
                     </div>
                 </div>
             )}
