@@ -135,7 +135,7 @@ function DisplayGift() {
             {/* Search Bar */}
             <div className="search-container">
                 <input
-                    type="text" class="search-bar"
+                    type="text"
                     placeholder="Search by name, category, specialization, or phone number..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
