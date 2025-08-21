@@ -50,7 +50,7 @@ function MultiStepApplication() {
 		setError("");
 		setSuccess("");
 		try {
-			const res = await fetch("/api/applications", {
+			const res = await fetch("https://8080-becebdeeecebfeacfffeefcfffbafabfbdcaeedf.premiumproject.examly.io/api/applications", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
